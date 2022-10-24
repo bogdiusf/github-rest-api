@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 function Home() {
   const navigate = useNavigate()
@@ -11,20 +12,19 @@ function Home() {
 
   return (
     <>
-      <button
-        onClick={() => {
-          dispatch({ type: 'SET_USER', payload: '' })
-        }}
-      >
-        Clear input
-      </button>
-      <input
+      <motion.input
+        as={motion.input}
         value={inputUsername}
         onChange={(e) => setInputUsername(e.target.value)}
       />
-      <button disabled={!inputUsername} onClick={handleSubmit}>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        colorScheme="teal"
+        disabled={!inputUsername}
+        onClick={handleSubmit}
+      >
         Fetch repos
-      </button>
+      </motion.button>
     </>
   )
 }

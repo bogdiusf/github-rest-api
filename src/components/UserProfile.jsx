@@ -2,12 +2,24 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { createUseStyles } from 'react-jss'
+import { UserProfileStyles } from './UserProfile.styles'
+
+import { AnimatePresence, motion } from 'framer-motion'
+
+import UserRepository from './UserRepository'
+import Loader from './Loader'
+
 const BASE_URL = 'https://api.github.com/users'
 
+const useStyles = createUseStyles(UserProfileStyles)
+
 const UserProfile = () => {
-  const { reposData, isLoading, response } = useSelector((state) => state)
+  const { reposData, isLoading } = useSelector((state) => state)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const classes = useStyles()
 
   const { user } = useParams()
 
@@ -24,16 +36,9 @@ const UserProfile = () => {
         if (data.length > 0) {
           dispatch({ type: 'SET_REPOS', payload: data })
         } else {
-          dispatch({
-            type: 'SET_RESPONSE',
-            payload: { success: false, message: 'User has no repositories!' }
-          })
+          navigate('/user-has-no-repos')
         }
       } else if (response.status === 404) {
-        dispatch({
-          type: 'SET_RESPONSE',
-          payload: { success: false, message: 'User not found!' }
-        })
         navigate('/user-not-found')
       }
     } catch (e) {
@@ -45,39 +50,31 @@ const UserProfile = () => {
   }
 
   useEffect(() => {
-    dispatch({ type: 'SET_REPOS', payload: [] })
-  }, [])
-
-  useEffect(() => {
     fetchData()
-  }, [user])
-
-  useEffect(() => {
-    if (user === '') {
-      navigate('/')
-    }
   }, [user])
 
   return (
     <>
       {isLoading ? (
-        <div>Loading</div>
+        <Loader />
       ) : (
-        <>
-          {reposData?.map((item) => (
-            <div
-              onClick={async () => {
-                await navigator.clipboard
-                  .writeText(item.clone_url)
-                  .then(() => alert('Copied to clipboard'))
-              }}
-              key={item.id}
-            >
-              {item.name}
+        <AnimatePresence>
+          <motion.div
+            className={classes.profileContainer}
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <h1>Repositories</h1>
+            <div className={classes.reposContainer}>
+              {reposData.slice(0, 10).map((item) => (
+                <UserRepository key={item.id} props={item} />
+              ))}
             </div>
-          ))}
-          {!response.success && <div>{response.message}</div>}
-        </>
+          </motion.div>
+        </AnimatePresence>
       )}
     </>
   )

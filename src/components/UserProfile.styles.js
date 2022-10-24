@@ -1,10 +1,5 @@
 export const UserProfileStyles = {
   profileContainer: {
-    position: 'absolute',
-    top: '10rem',
-    left: '25%',
-    paddingBottom: 50,
-
     '& h1': {
       padding: [20, 0]
     }

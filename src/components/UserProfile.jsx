@@ -58,23 +58,31 @@ const UserProfile = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5 }}
+        >
           <motion.div
-            className={classes.profileContainer}
-            layout
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
+            style={{
+              height: 200,
+              backgroundColor: '#3d3d3d',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 5,
+              marginBottom: 50
+            }}
           >
-            <h1>Repositories</h1>
-            <div className={classes.reposContainer}>
-              {reposData.map((item) => (
-                <UserRepository key={item.id} props={item} />
-              ))}
-            </div>
+            Placeholder for profile img - nr of repos and others
           </motion.div>
-        </AnimatePresence>
+          <h1>Repositories</h1>
+          <div className={classes.reposContainer}>
+            {reposData.map((item) => (
+              <UserRepository key={item.id} props={item} />
+            ))}
+          </div>
+        </motion.div>
       )}
     </>
   )

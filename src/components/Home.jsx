@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -44,14 +43,16 @@ function Home() {
 
   const handleSubmit = () => {
     fetchData()
+    dispatch({
+      type: 'SET_RESPONSE',
+      payload: { success: true, message: '' }
+    })
     navigate(`/user/${inputUsername}`)
-    dispatch({ type: 'SET_RESPONSE', payload: { success: true, message: '' } })
   }
 
   return (
     <>
       <button
-        style={{ position: 'absolute', top: 150, left: '39%' }}
         onClick={() => {
           navigate(`/`)
           dispatch({ type: 'SET_USER', payload: '' })
@@ -60,16 +61,12 @@ function Home() {
         Home
       </button>
       <input
-        style={{ position: 'absolute', top: 150, left: '45%' }}
+        value={inputUsername}
         onChange={(e) =>
           dispatch({ type: 'SET_USER', payload: e.target.value })
         }
       />
-      <button
-        style={{ position: 'absolute', top: 150, left: '60%' }}
-        disabled={inputUsername === '' && 'disabled'}
-        onClick={handleSubmit}
-      >
+      <button disabled={!inputUsername} onClick={handleSubmit}>
         Fetch repos
       </button>
     </>

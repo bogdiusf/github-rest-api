@@ -1,11 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const UserProfile = () => {
   const { reposData, isLoading, response } = useSelector((state) => state)
   const dispatch = useDispatch()
-
-  console.log(response)
 
   useEffect(() => {
     dispatch({ type: 'SET_REPOS', payload: [] })
@@ -29,7 +27,7 @@ const UserProfile = () => {
               {item.name}
             </div>
           ))}
-          {response.success === false && <div>{response.message}</div>}
+          {!response.success && <div>{response.message}</div>}
         </div>
       )}
     </>

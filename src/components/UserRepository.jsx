@@ -12,8 +12,6 @@ const useStyles = createUseStyles(UserRepositoryStyles)
 const UserRepository = ({ props }) => {
   const classes = useStyles()
 
-  console.log(props)
-
   const { name, clone_url, stargazers_count, forks_count } = props
 
   const hovered = {

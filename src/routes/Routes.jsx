@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from '../components/Home'
 import NotFound from '../components/NotFound'
 import UserNotFound from '../components/UserNotFound'
@@ -10,9 +10,12 @@ const AppRoutes = () => {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path={`/user/:user`}>
-          <Route index={true} element={<UserProfile />} />
-          <Route path="user-not-found" element={<UserNotFound />} />
+        <Route path="/user">
+          <Route index={true} element={<Navigate to="/" />} />
+          <Route path={`:user`}>
+            <Route index={true} element={<UserProfile />} />
+            <Route path="user-not-found" element={<UserNotFound />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

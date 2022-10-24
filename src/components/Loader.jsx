@@ -51,21 +51,14 @@ const Loader = () => {
       initial="start"
       animate="end"
     >
-      <motion.span
-        style={loadingCircle}
-        variants={loadingCircleVariants}
-        transition={loadingCircleTransition}
-      />
-      <motion.span
-        style={loadingCircle}
-        variants={loadingCircleVariants}
-        transition={loadingCircleTransition}
-      />
-      <motion.span
-        style={loadingCircle}
-        variants={loadingCircleVariants}
-        transition={loadingCircleTransition}
-      />
+      {[1, 2, 3].map((item) => (
+        <motion.span
+          key={item}
+          style={loadingCircle}
+          variants={loadingCircleVariants}
+          transition={loadingCircleTransition}
+        />
+      ))}
     </motion.div>
   )
 }

@@ -1,3 +1,9 @@
+const commonDisplayStyles = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
+
 export const UserRepositoryStyles = {
   repoContainer: {
     display: 'flex',
@@ -9,9 +15,14 @@ export const UserRepositoryStyles = {
     borderRadius: 5,
     border: [1, 'solid', 'rgba(255,255,255,0.1)']
   },
-  repoTopics: {
-    padding: [0, 10],
+  starAndForkContainer: {
     display: 'flex',
-    gap: 5
+    gap: 15,
+    '&>div:first-child': {
+      gap: 5
+    }
+  },
+  center: {
+    ...commonDisplayStyles
   }
 }

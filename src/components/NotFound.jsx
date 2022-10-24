@@ -1,13 +1,6 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
 
 const NotFound = () => {
-  // const navigate = useNavigate()
-
-  // setTimeout(() => {
-  //   navigate('/')
-  // }, 2000)
-
   return <div>NotFound</div>
 }
 

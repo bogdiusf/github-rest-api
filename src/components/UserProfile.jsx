@@ -1,15 +1,11 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-
 import { createUseStyles } from 'react-jss'
 import { UserProfileStyles } from './UserProfile.styles'
-
 import { motion } from 'framer-motion'
-
 import UserRepository from './UserRepository'
 import Loader from './Loader'
-
 import defaultAvatar from '../assets/default_github_avatar.png'
 import { BiArrowBack } from 'react-icons/bi'
 
@@ -63,50 +59,35 @@ const UserProfile = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
         >
-          <motion.div
-            style={{
-              height: 200,
-              backgroundColor: '#3d3d3d',
-              display: 'flex',
-              alignItems: 'center',
-              borderRadius: 5,
-              marginBottom: 50,
-              padding: '0px 50px',
-              gap: 45
-            }}
-          >
+          <motion.header className={classes.header}>
             <motion.div
               whileHover={{ scale: 1.2, cursor: 'pointer' }}
               title="Home"
-              style={{ marginBottom: 100, marginLeft: -30 }}
               onClick={() => navigate('/')}
+              className={classes.homeBtn}
             >
-              <BiArrowBack
-                fill="white"
-                style={{
-                  fontSize: 50,
-                  borderRadius: '50%',
-                  border: '1px solid white',
-                  padding: 10
-                }}
-              />
+              <BiArrowBack fill="white" />
             </motion.div>
             <motion.img
-              initial={{ borderRadius: '50%', border: '1px solid white' }}
               whileHover={{
                 scale: 1.5,
                 borderRadius: '5px',
-                cursor: 'pointer'
+                transition: { type: 'spring' }
               }}
               transition={{ duration: 0.5 }}
+              className={classes.avatar}
               src={
                 reposData.length > 0
                   ? reposData[0].owner.avatar_url
                   : defaultAvatar
               }
-              width="150"
+              onClick={() =>
+                reposData.length > 0
+                  ? window.open(reposData[0].owner.avatar_url, '_blank')
+                  : null
+              }
             />
-          </motion.div>
+          </motion.header>
           <h1>Repositories</h1>
           <div className={classes.reposContainer}>
             {reposData.map((item) => (

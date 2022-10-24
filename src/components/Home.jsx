@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-
 import { createUseStyles } from 'react-jss'
 import { HomeStyles } from './Home.styles'
-
 import { ImGithub } from 'react-icons/im'
 
 const useStyles = createUseStyles(HomeStyles)
@@ -25,31 +23,17 @@ function Home() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1 }}
     >
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginBottom: 50
-        }}
-      >
-        <h1 style={{ padding: 0 }}>Not enough info about a future employee?</h1>
+      <header className={classes.header}>
+        <h1>Not enough info about a future employee?</h1>
         <h2>Grab his spare time projects now!</h2>
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 10, repeat: Infinity }}
         >
-          <ImGithub style={{ fontSize: 140 }} />
+          <ImGithub />
         </motion.div>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
+      </header>
+      <main className={classes.main}>
         <motion.input
           className={classes.input}
           placeholder="Enter a username..."
@@ -58,13 +42,17 @@ function Home() {
         />
         <motion.button
           className={classes.button}
-          whileHover={inputUsername && { scale: 1.1 }}
+          whileHover={
+            inputUsername
+              ? { scale: 1.1, cursor: 'pointer' }
+              : { cursor: 'not-allowed' }
+          }
           disabled={!inputUsername}
           onClick={handleSubmit}
         >
           Fetch repos
         </motion.button>
-      </div>
+      </main>
     </motion.div>
   )
 }

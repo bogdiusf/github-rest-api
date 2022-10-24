@@ -1,10 +1,8 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
 import { UserRepositoryStyles } from './UserRepository.styles'
-
 import { AiFillStar } from 'react-icons/ai'
 import { CgGitFork } from 'react-icons/cg'
-
 import { motion } from 'framer-motion'
 
 const useStyles = createUseStyles(UserRepositoryStyles)
@@ -26,28 +24,14 @@ const UserRepository = ({ props }) => {
       transition={{ duration: 0.3 }}
       whileHover={hovered}
       onClick={(e) => window.open(clone_url, '_blank')}
-      layout
     >
       <div>{name}</div>
-      <div style={{ display: 'flex', gap: 15 }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 5
-          }}
-        >
+      <div className={classes.starAndForkContainer}>
+        <div className={classes.center}>
           <span>{stargazers_count}</span>
           <AiFillStar fill="yellow" />
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
+        <div className={classes.center}>
           <span>{forks_count}</span>
           <CgGitFork fill="green" />
         </div>

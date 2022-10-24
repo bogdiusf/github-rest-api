@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import { createUseStyles } from 'react-jss'
 import { HomeStyles } from './Home.styles'
 
+import { ImGithub } from 'react-icons/im'
+
 const useStyles = createUseStyles(HomeStyles)
 
 function Home() {
@@ -26,18 +28,24 @@ function Home() {
       >
         <div
           style={{
-            height: 200,
-            backgroundColor: '#3d3d3d',
             display: 'flex',
+            flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            borderRadius: 5,
             marginBottom: 50
           }}
         >
-          Placeholder for an image or someth
+          <h1 style={{ padding: 0 }}>Not enough info of a future employee?</h1>
+          <h2>Grab his spare time projects now!</h2>
+          <ImGithub style={{ fontSize: 140 }} />
         </div>
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+        >
           <motion.input
             className={classes.input}
             placeholder="Enter a username..."
@@ -46,7 +54,7 @@ function Home() {
           />
           <motion.button
             className={classes.button}
-            whileHover={{ scale: 1.1 }}
+            whileHover={inputUsername && { scale: 1.1 }}
             disabled={!inputUsername}
             onClick={handleSubmit}
           >

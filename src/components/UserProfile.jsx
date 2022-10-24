@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 import { UserProfileStyles } from './UserProfile.styles'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 import UserRepository from './UserRepository'
 import Loader from './Loader'
@@ -36,10 +36,10 @@ const UserProfile = () => {
         if (data.length > 0) {
           dispatch({ type: 'SET_REPOS', payload: data })
         } else {
-          navigate('/user-has-no-repos')
+          navigate(`/user/${user}/no-repos`)
         }
       } else if (response.status === 404) {
-        navigate('/user-not-found')
+        navigate(`/user/${user}/user-not-found`)
       }
     } catch (e) {
       console.log(e)

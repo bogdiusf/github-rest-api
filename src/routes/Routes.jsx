@@ -12,8 +12,8 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path={`/user/:user`} element={<UserProfile />} />
-        <Route path="/user-not-found" element={<UserNotFound />} />
-        <Route path="/user-has-no-repos" element={<NoRepos />} />
+        <Route path="/user/:user/no-repos" element={<NoRepos />} />
+        <Route path="/user/:user/user-not-found" element={<UserNotFound />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

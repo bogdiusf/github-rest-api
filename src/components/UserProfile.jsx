@@ -69,7 +69,7 @@ const UserProfile = () => {
           >
             <h1>Repositories</h1>
             <div className={classes.reposContainer}>
-              {reposData.slice(0, 10).map((item) => (
+              {reposData.map((item) => (
                 <UserRepository key={item.id} props={item} />
               ))}
             </div>

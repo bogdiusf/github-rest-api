@@ -15,7 +15,8 @@ const UserRepository = ({ props }) => {
   const hovered = {
     scale: 1.1,
     cursor: 'pointer',
-    backgroundColor: 'rgba(0,0,0,1)'
+    backgroundColor: 'rgba(0,0,0,1)',
+    transition: { type: 'spring' }
   }
 
   return (

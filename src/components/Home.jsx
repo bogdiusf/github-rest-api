@@ -24,7 +24,7 @@ function Home() {
       transition={{ duration: 1 }}
     >
       <header className={classes.header}>
-        <h1>Not enough info about a future employee?</h1>
+        <h1>Not enough info about your future employee?</h1>
         <h2>Grab his spare time projects now!</h2>
         <motion.div
           animate={{ rotate: 360 }}
@@ -44,7 +44,11 @@ function Home() {
           className={classes.button}
           whileHover={
             inputUsername
-              ? { scale: 1.1, cursor: 'pointer' }
+              ? {
+                  scale: 1.1,
+                  cursor: 'pointer',
+                  transition: { type: 'spring' }
+                }
               : { cursor: 'not-allowed' }
           }
           disabled={!inputUsername}

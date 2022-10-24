@@ -14,11 +14,10 @@ const BASE_URL = 'https://api.github.com/users'
 const useStyles = createUseStyles(UserProfileStyles)
 
 const UserProfile = () => {
-  const { reposData, isLoading } = useSelector((state) => state)
+  const { fetchedData } = useSelector((state) => state)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  console.log(reposData)
   const classes = useStyles()
 
   const { user } = useParams()
@@ -51,7 +50,7 @@ const UserProfile = () => {
 
   return (
     <>
-      {isLoading ? (
+      {fetchedData.isLoading ? (
         <Loader />
       ) : (
         <motion.div
@@ -62,6 +61,7 @@ const UserProfile = () => {
           <motion.header className={classes.header}>
             <motion.div
               whileHover={{ scale: 1.2, cursor: 'pointer' }}
+              transition={{ type: 'spring' }}
               title="Home"
               onClick={() => navigate('/')}
               className={classes.homeBtn}
@@ -69,28 +69,30 @@ const UserProfile = () => {
               <BiArrowBack fill="white" />
             </motion.div>
             <motion.img
-              whileHover={{
-                scale: 1.5,
-                borderRadius: '5px',
-                transition: { type: 'spring' }
-              }}
+              whileHover={
+                fetchedData.repos.length && {
+                  scale: 1.5,
+                  borderRadius: '5px',
+                  transition: { type: 'spring' }
+                }
+              }
               transition={{ duration: 0.5 }}
               className={classes.avatar}
               src={
-                reposData.length > 0
-                  ? reposData[0].owner.avatar_url
+                fetchedData.repos.length > 0
+                  ? fetchedData?.repos[0].owner.avatar_url
                   : defaultAvatar
               }
               onClick={() =>
-                reposData.length > 0
-                  ? window.open(reposData[0].owner.avatar_url, '_blank')
+                fetchedData.repos.length > 0
+                  ? window.open(fetchedData.repos[0].owner.avatar_url, '_blank')
                   : null
               }
             />
           </motion.header>
           <h1>Repositories</h1>
           <div className={classes.reposContainer}>
-            {reposData.map((item) => (
+            {fetchedData.repos.map((item) => (
               <UserRepository key={item.id} props={item} />
             ))}
           </div>

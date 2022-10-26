@@ -11,7 +11,7 @@ export const UserProfileStyles = {
     minWidth: 350,
     backgroundColor: '#3d3d3d',
     display: 'flex',
-    borderRadius: 5,
+    borderRadius: 2,
     marginBottom: 50,
     padding: '0px 50px',
     gap: 45
@@ -37,5 +37,11 @@ export const UserProfileStyles = {
     height: 150,
     margin: ['auto', 0],
     cursor: 'pointer'
+  },
+
+  userRepoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 20
   }
 }

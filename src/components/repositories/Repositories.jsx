@@ -39,14 +39,14 @@ const UserRepository = ({ reposData }) => {
     }
   }, [searchParams.get('page')])
 
-  const Pages = () => {
+  const PageButtons = () => {
     const pageButtons = []
     for (let i = 0; i < nrOfPages; i++)
       pageButtons.push(
         <button
           key={i}
           onClick={() => handlePages(i)}
-          style={{ flex: 1, cursor: 'pointer' }}
+          style={{ minWidth: '15%', cursor: 'pointer' }}
         >
           {i + 1}
         </button>
@@ -56,7 +56,7 @@ const UserRepository = ({ reposData }) => {
   }
 
   return (
-    <div className={classes.container}>
+    <>
       <h1>Repositories</h1>
       {isPageLoading ? (
         <FadeTransition>
@@ -97,10 +97,13 @@ const UserRepository = ({ reposData }) => {
           ))}
         </div>
       )}
-      <motion.div layout style={{ display: 'flex' }}>
-        {<Pages />}
+      <motion.div
+        layout
+        style={{ display: 'flex', justifyContent: 'space-between' }}
+      >
+        <PageButtons />
       </motion.div>
-    </div>
+    </>
   )
 }
 

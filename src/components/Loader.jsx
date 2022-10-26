@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const loadingContainer = {
-  width: 560,
+  width: '50vw',
   height: 420,
   display: 'flex',
   gap: 5,

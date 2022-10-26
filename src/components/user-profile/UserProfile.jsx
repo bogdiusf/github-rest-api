@@ -97,7 +97,7 @@ const UserProfile = () => {
             <div>{userData.name}</div>
             <div>Number of repositories: {userData.public_repos}</div>
           </motion.header>
-          <main>
+          <main className={classes.userRepoContainer}>
             {reposData.length > 0 && <UserRepository reposData={reposData} />}
           </main>
         </motion.div>

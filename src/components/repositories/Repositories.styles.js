@@ -5,12 +5,6 @@ const commonDisplayStyles = {
 }
 
 export const UserRepositoryStyles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20
-  },
-
   repoContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -26,7 +20,7 @@ export const UserRepositoryStyles = {
     justifyContent: 'space-between',
     backgroundColor: '#3d3d3d',
     padding: 25,
-    borderRadius: 5,
+    borderRadius: 2,
     border: [1, 'solid', 'rgba(255,255,255,0.1)']
   },
   starAndForkContainer: {

@@ -8,6 +8,7 @@ import UserRepository from './UserRepository'
 import Loader from './Loader'
 import defaultAvatar from '../assets/default_github_avatar.png'
 import { BiArrowBack } from 'react-icons/bi'
+import FadeTransition from './shared/FadeTransition'
 
 const BASE_URL = 'https://api.github.com/users'
 
@@ -41,7 +42,7 @@ const UserProfile = () => {
     }
     setTimeout(() => {
       dispatch({ type: 'SET_LOADER', payload: false })
-    }, 1000)
+    }, 2000)
   }
 
   useEffect(() => {
@@ -51,11 +52,14 @@ const UserProfile = () => {
   return (
     <>
       {fetchedData.isLoading ? (
-        <Loader />
+        <FadeTransition>
+          <Loader />
+        </FadeTransition>
       ) : (
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
           transition={{ duration: 1 }}
         >
           <motion.header className={classes.header}>
@@ -92,8 +96,8 @@ const UserProfile = () => {
           </motion.header>
           <h1>Repositories</h1>
           <div className={classes.reposContainer}>
-            {fetchedData.repos.map((item) => (
-              <UserRepository key={item.id} props={item} />
+            {fetchedData.repos.map((item, index) => (
+              <UserRepository key={item.id} props={item} index={index} />
             ))}
           </div>
         </motion.div>

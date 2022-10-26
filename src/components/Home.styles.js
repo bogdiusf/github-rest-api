@@ -23,11 +23,16 @@ export const HomeStyles = {
     color: 'black',
     padding: [10, 20],
     marginRight: 10,
-    borderRadius: 5
+    borderRadius: 2,
+    width: 300,
+    height: 30
   },
   button: {
     padding: [15, 20],
     border: 'none',
-    borderRadius: 5
+    borderRadius: 2,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10
   }
 }

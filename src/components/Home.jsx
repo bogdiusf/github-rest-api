@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { createUseStyles } from 'react-jss'
 import { HomeStyles } from './Home.styles'
 import { ImGithub } from 'react-icons/im'
+import { AiOutlineArrowRight } from 'react-icons/ai'
+import FadeTransition from './shared/FadeTransition'
 
 const useStyles = createUseStyles(HomeStyles)
 
@@ -17,12 +19,15 @@ function Home() {
     navigate(`/user/${inputUsername}`)
   }
 
+  const submitButtonTransition = {
+    initial: { opacity: 0, scale: 0 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0 },
+    transition: { duration: 0.5 }
+  }
+
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1 }}
-    >
+    <FadeTransition>
       <header className={classes.header}>
         <h1>Not enough info about your future employee?</h1>
         <h2>Grab his spare time projects now!</h2>
@@ -34,30 +39,40 @@ function Home() {
         </motion.div>
       </header>
       <main className={classes.main}>
-        <motion.input
-          className={classes.input}
-          placeholder="Enter a username..."
-          value={inputUsername}
-          onChange={(e) => setInputUsername(e.target.value)}
-        />
-        <motion.button
-          className={classes.button}
-          whileHover={
-            inputUsername
-              ? {
-                  scale: 1.1,
-                  cursor: 'pointer',
-                  transition: { type: 'spring' }
-                }
-              : { cursor: 'not-allowed' }
-          }
-          disabled={!inputUsername}
-          onClick={handleSubmit}
-        >
-          Fetch repos
-        </motion.button>
+        <AnimatePresence mode="popLayout">
+          <motion.input
+            layout
+            key="input"
+            className={classes.input}
+            placeholder="Enter a username..."
+            value={inputUsername}
+            onChange={(e) => setInputUsername(e.target.value)}
+            onKeyDown={(e) => (e.key === 'Enter' ? handleSubmit() : null)}
+          />
+          {inputUsername && (
+            <motion.button
+              layout
+              key="button"
+              {...submitButtonTransition}
+              className={classes.button}
+              whileHover={
+                inputUsername
+                  ? {
+                      scale: 1.1,
+                      cursor: 'pointer',
+                      transition: { type: 'spring' }
+                    }
+                  : { cursor: 'not-allowed' }
+              }
+              onClick={handleSubmit}
+            >
+              <span>Fetch repos</span>
+              <AiOutlineArrowRight />
+            </motion.button>
+          )}
+        </AnimatePresence>
       </main>
-    </motion.div>
+    </FadeTransition>
   )
 }
 

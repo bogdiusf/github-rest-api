@@ -9,6 +9,7 @@ export const UserRepositoryStyles = {
     display: 'flex',
     alignItems: 'center',
     width: '50vw',
+    minWidth: 350,
     justifyContent: 'space-between',
     backgroundColor: '#3d3d3d',
     padding: 25,

@@ -43,16 +43,20 @@ const UserRepository = ({ reposData }) => {
     const pageButtons = []
     for (let i = 0; i < nrOfPages; i++)
       pageButtons.push(
-        <button
+        <motion.button
           key={i}
           onClick={() => handlePages(i)}
           style={{ minWidth: '15%', cursor: 'pointer' }}
         >
           {i + 1}
-        </button>
+        </motion.button>
       )
 
-    return pageButtons
+    return (
+      <motion.div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        {pageButtons}{' '}
+      </motion.div>
+    )
   }
 
   return (
@@ -97,12 +101,7 @@ const UserRepository = ({ reposData }) => {
           ))}
         </div>
       )}
-      <motion.div
-        layout
-        style={{ display: 'flex', justifyContent: 'space-between' }}
-      >
-        <PageButtons />
-      </motion.div>
+      <PageButtons />
     </>
   )
 }

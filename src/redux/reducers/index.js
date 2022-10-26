@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 const updateReposReducer = (
-  state = { isLoading: false, repos: [] },
+  state = { isLoading: false, repos: [], userData: {} },
   action
 ) => {
   switch (action.type) {
@@ -10,6 +10,9 @@ const updateReposReducer = (
     }
     case 'SET_LOADER': {
       return { ...state, isLoading: action.payload }
+    }
+    case 'SET_USER_DATA': {
+      return { ...state, userData: action.payload }
     }
     default: {
       return state

@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss'
 import { HomeStyles } from './Home.styles'
 import { ImGithub } from 'react-icons/im'
 import { AiOutlineArrowRight } from 'react-icons/ai'
-import FadeTransition from './shared/FadeTransition'
+import FadeTransition from '../shared/FadeTransition'
 
 const useStyles = createUseStyles(HomeStyles)
 
@@ -16,7 +16,7 @@ function Home() {
   const classes = useStyles()
 
   const handleSubmit = () => {
-    navigate(`/user/${inputUsername}`)
+    navigate(`/user/${inputUsername}?page=1`)
   }
 
   const submitButtonTransition = {

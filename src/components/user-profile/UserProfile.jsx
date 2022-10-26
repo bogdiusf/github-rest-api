@@ -4,11 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 import { UserProfileStyles } from './UserProfile.styles'
 import { motion } from 'framer-motion'
-import UserRepository from './UserRepository'
-import Loader from './Loader'
-import defaultAvatar from '../assets/default_github_avatar.png'
+import UserRepository from '../repositories/Repositories'
+import Loader from '../Loader'
 import { BiArrowBack } from 'react-icons/bi'
-import FadeTransition from './shared/FadeTransition'
+import FadeTransition from '../shared/FadeTransition'
 
 const BASE_URL = 'https://api.github.com/users'
 
@@ -16,6 +15,8 @@ const useStyles = createUseStyles(UserProfileStyles)
 
 const UserProfile = () => {
   const { fetchedData } = useSelector((state) => state)
+  const userData = fetchedData.userData
+  const reposData = fetchedData.repos
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -26,15 +27,22 @@ const UserProfile = () => {
   const fetchData = async () => {
     try {
       dispatch({ type: 'SET_LOADER', payload: true })
-      const response = await fetch(`${BASE_URL}/${user}/repos`, {
+      const repoResponse = await fetch(`${BASE_URL}/${user}/repos`, {
         headers: {
           Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`
         }
       })
-      if (response.status === 200) {
-        const data = await response.json()
-        dispatch({ type: 'SET_REPOS', payload: data })
-      } else if (response.status === 404) {
+      const userResponse = await fetch(`${BASE_URL}/${user}`, {
+        headers: {
+          Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`
+        }
+      })
+      if (repoResponse.status === 200) {
+        const reposData = await repoResponse.json()
+        const userData = await userResponse.json()
+        dispatch({ type: 'SET_REPOS', payload: reposData })
+        dispatch({ type: 'SET_USER_DATA', payload: userData })
+      } else if (repoResponse.status === 404) {
         navigate(`/user/${user}/user-not-found`)
       }
     } catch (e) {
@@ -61,6 +69,7 @@ const UserProfile = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           transition={{ duration: 1 }}
+          className={classes.userProfileContainer}
         >
           <motion.header className={classes.header}>
             <motion.div
@@ -74,7 +83,7 @@ const UserProfile = () => {
             </motion.div>
             <motion.img
               whileHover={
-                fetchedData.repos.length && {
+                userData && {
                   scale: 1.5,
                   borderRadius: '5px',
                   transition: { type: 'spring' }
@@ -82,24 +91,15 @@ const UserProfile = () => {
               }
               transition={{ duration: 0.5 }}
               className={classes.avatar}
-              src={
-                fetchedData.repos.length > 0
-                  ? fetchedData?.repos[0].owner.avatar_url
-                  : defaultAvatar
-              }
-              onClick={() =>
-                fetchedData.repos.length > 0
-                  ? window.open(fetchedData.repos[0].owner.avatar_url, '_blank')
-                  : null
-              }
+              src={userData.avatar_url}
+              onClick={() => window.open(userData.avatar_url, '_blank')}
             />
+            <div>{userData.name}</div>
+            <div>Number of repositories: {userData.public_repos}</div>
           </motion.header>
-          <h1>Repositories</h1>
-          <div className={classes.reposContainer}>
-            {fetchedData.repos.map((item, index) => (
-              <UserRepository key={item.id} props={item} index={index} />
-            ))}
-          </div>
+          <main>
+            {reposData.length > 0 && <UserRepository reposData={reposData} />}
+          </main>
         </motion.div>
       )}
     </>

@@ -1,10 +1,11 @@
 import React from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import Home from '../components/Home'
-import NotFound from '../components/NotFound'
-import UserNotFound from '../components/UserNotFound'
-import UserProfile from '../components/UserProfile'
 import { AnimatePresence } from 'framer-motion'
+
+import Home from '../components/home/Home'
+import UserProfile from '../components/user-profile/UserProfile'
+import UserNotFound from '../components/user-not-found/UserNotFound'
+import NotFound from '../components/404/NotFound'
 
 const AppRoutes = () => {
   const location = useLocation()

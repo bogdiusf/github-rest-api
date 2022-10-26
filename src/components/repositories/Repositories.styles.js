@@ -5,7 +5,20 @@ const commonDisplayStyles = {
 }
 
 export const UserRepositoryStyles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 20
+  },
+
   repoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+    height: 420
+  },
+
+  repo: {
     display: 'flex',
     alignItems: 'center',
     width: '50vw',
@@ -18,9 +31,9 @@ export const UserRepositoryStyles = {
   },
   starAndForkContainer: {
     display: 'flex',
-    gap: 15,
-    '&>div:first-child': {
-      gap: 5
+    gap: 20,
+    '&>div': {
+      gap: 3
     }
   },
   center: {

@@ -2,10 +2,12 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const loadingContainer = {
-  width: '4rem',
-  height: '4rem',
+  width: 560,
+  height: 420,
   display: 'flex',
-  justifyContent: 'space-around'
+  gap: 5,
+  justifyContent: 'center',
+  alignItems: 'center'
 }
 const loadingCircle = {
   display: 'block',

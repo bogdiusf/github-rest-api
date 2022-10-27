@@ -32,6 +32,11 @@ const UserProfile = () => {
   const { repos, userData, isLoading } = fetchedData
 
   const city = userData.location?.replace(/ ,.*/, '')
+  const blog = !userData.blog
+    ? ''
+    : userData.blog?.includes('https://') || userData.blog?.includes('http://')
+    ? userData.blog
+    : `https://${userData.blog}`
 
   const classes = useStyles()
 
@@ -124,10 +129,10 @@ const UserProfile = () => {
                     <AiOutlineMail />
                   </motion.div>
                 )}
-                {userData.blog && (
+                {blog && (
                   <motion.div
                     whileHover={{ cursor: 'pointer', scale: 1.1 }}
-                    onClick={() => window.open(userData.blog, '_blank')}
+                    onClick={() => window.open(blog, '_blank')}
                   >
                     {userData.blog}
                     <HiOutlineLink />

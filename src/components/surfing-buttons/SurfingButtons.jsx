@@ -25,7 +25,7 @@ const SurfingButtons = ({ setSearchParams, setIsPageLoading, nrOfPages }) => {
 
   return (
     <motion.div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      {pageButtons}{' '}
+      {pageButtons}
     </motion.div>
   )
 }

@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const BASE_URL = 'https://api.github.com/users'
 
 const FetchData = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { user } = useParams()
 
   const fetchData = async () => {

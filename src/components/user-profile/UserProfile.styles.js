@@ -21,7 +21,8 @@ export const UserProfileStyles = {
 
   headerLeftCol: {
     display: 'flex',
-    gap: 30
+    gap: 30,
+    margin: ['auto', 0]
   },
 
   homeBtn: {
@@ -88,6 +89,7 @@ export const UserProfileStyles = {
   userRepoContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 20
+    gap: 20,
+    minHeight: 565
   }
 }

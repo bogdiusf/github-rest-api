@@ -2,7 +2,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const loadingContainer = {
-  width: '50vw',
+  maxWidth: '50vw',
+  minWidth: 800,
   height: 420,
   display: 'flex',
   gap: 5,
@@ -53,7 +54,7 @@ const Loader = () => {
       initial="start"
       animate="end"
     >
-      {[1, 2, 3].map((item) => (
+      {[1, 2, 3, 4].map((item) => (
         <motion.span
           key={item}
           style={loadingCircle}

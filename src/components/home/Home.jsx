@@ -1,10 +1,15 @@
+// React libraries
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
 import { createUseStyles } from 'react-jss'
-import { HomeStyles } from './Home.styles'
+
+// Style related components / libraries
+import { motion, AnimatePresence } from 'framer-motion'
 import { ImGithub } from 'react-icons/im'
 import { AiOutlineArrowRight } from 'react-icons/ai'
+import { HomeStyles } from './Home.styles'
+
+// Others
 import FadeTransition from '../shared/FadeTransition'
 
 const useStyles = createUseStyles(HomeStyles)
@@ -52,7 +57,6 @@ function Home() {
           {inputUsername && (
             <motion.button
               layout
-              key="button"
               {...submitButtonTransition}
               className={classes.button}
               whileHover={
@@ -66,7 +70,6 @@ function Home() {
               }
               onClick={handleSubmit}
             >
-              <span>Fetch repos</span>
               <AiOutlineArrowRight />
             </motion.button>
           )}

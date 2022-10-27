@@ -5,27 +5,21 @@ import FadeTransition from '../shared/FadeTransition'
 import Loader from '../Loader'
 import { UserRepositoryStyles } from './Repositories.styles'
 import { AiFillStar } from 'react-icons/ai'
-import ForkIcon from '../../assets/gitFork.svg'
+import { GoRepoForked } from 'react-icons/go'
 import { motion } from 'framer-motion'
+
+import SurfingButtons from '../surfing-buttons/SurfingButtons'
 
 const useStyles = createUseStyles(UserRepositoryStyles)
 
-const UserRepository = ({ reposData }) => {
+const UserRepository = ({ repos }) => {
   const [isPageLoading, setIsPageLoading] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
   const classes = useStyles()
 
   const pageNumber = (searchParams.get('page') - 1) * 5
   const reposPerPage = pageNumber + 5
-  const nrOfPages = Math.ceil(reposData.length / 5)
-
-  const handlePages = (pageNr) => {
-    setIsPageLoading(true)
-    setSearchParams({ page: pageNr + 1 })
-    setTimeout(() => {
-      setIsPageLoading(false)
-    }, 2000)
-  }
+  const nrOfPages = Math.ceil(repos.length / 5)
 
   useEffect(() => {
     if (searchParams.get('page') < 1) {
@@ -39,26 +33,6 @@ const UserRepository = ({ reposData }) => {
     }
   }, [searchParams.get('page')])
 
-  const PageButtons = () => {
-    const pageButtons = []
-    for (let i = 0; i < nrOfPages; i++)
-      pageButtons.push(
-        <motion.button
-          key={i}
-          onClick={() => handlePages(i)}
-          style={{ minWidth: '15%', cursor: 'pointer' }}
-        >
-          {i + 1}
-        </motion.button>
-      )
-
-    return (
-      <motion.div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        {pageButtons}{' '}
-      </motion.div>
-    )
-  }
-
   return (
     <>
       <h1>Repositories</h1>
@@ -68,7 +42,7 @@ const UserRepository = ({ reposData }) => {
         </FadeTransition>
       ) : (
         <div className={classes.repoContainer}>
-          {reposData.slice(pageNumber, reposPerPage).map((item, index) => (
+          {repos.slice(pageNumber, reposPerPage).map((item, index) => (
             <FadeTransition
               delay={index * 0.15}
               isRepoComp={true}
@@ -86,6 +60,7 @@ const UserRepository = ({ reposData }) => {
                 onClick={(e) => window.open(item.clone_url, '_blank')}
               >
                 <div>{item.name}</div>
+                <div className={classes.separator} />
                 <div className={classes.starAndForkContainer}>
                   <div className={classes.center}>
                     <span>{item.stargazers_count}</span>
@@ -93,7 +68,7 @@ const UserRepository = ({ reposData }) => {
                   </div>
                   <div className={classes.center}>
                     <span>{item.forks_count}</span>
-                    <img src={ForkIcon} />
+                    <GoRepoForked fill="#34c759" />
                   </div>
                 </div>
               </motion.div>
@@ -101,7 +76,11 @@ const UserRepository = ({ reposData }) => {
           ))}
         </div>
       )}
-      <PageButtons />
+      <SurfingButtons
+        setSearchParams={setSearchParams}
+        setIsPageLoading={setIsPageLoading}
+        nrOfPages={nrOfPages}
+      />
     </>
   )
 }

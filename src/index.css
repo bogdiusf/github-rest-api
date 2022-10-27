@@ -26,7 +26,8 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-input {
+input,
+a {
   all: unset;
 }
 

@@ -15,7 +15,7 @@ export const UserProfileStyles = {
     backgroundColor: '#3d3d3d',
     display: 'flex',
     borderRadius: [5, 5, 0, 0],
-    padding: [35, 35],
+    padding: [20, 35],
     gap: 45
   },
 

@@ -9,6 +9,7 @@ import { GoRepoForked } from 'react-icons/go'
 import { motion } from 'framer-motion'
 
 import SurfingButtons from '../surfing-buttons/SurfingButtons'
+import SurfingButton from '../surfing-buttons/SurfingButton'
 
 const useStyles = createUseStyles(UserRepositoryStyles)
 
@@ -20,6 +21,9 @@ const UserRepository = ({ repos }) => {
   const pageNumber = (searchParams.get('page') - 1) * 5
   const reposPerPage = pageNumber + 5
   const nrOfPages = Math.ceil(repos.length / 5)
+
+  const surfingButtons = []
+  for (let i = 1; i <= nrOfPages; i++) surfingButtons.push(i)
 
   useEffect(() => {
     if (searchParams.get('page') < 1) {
@@ -54,7 +58,7 @@ const UserRepository = ({ repos }) => {
                 whileHover={{
                   scale: 1.1,
                   cursor: 'pointer',
-                  backgroundColor: 'rgba(0,0,0,1)',
+                  backgroundColor: '#000',
                   transition: { type: 'spring' }
                 }}
                 onClick={(e) => window.open(item.clone_url, '_blank')}
@@ -64,7 +68,7 @@ const UserRepository = ({ repos }) => {
                 <div className={classes.starAndForkContainer}>
                   <div className={classes.center}>
                     <span>{item.stargazers_count}</span>
-                    <AiFillStar fill="yellow" />
+                    <AiFillStar fill="#ffff00" />
                   </div>
                   <div className={classes.center}>
                     <span>{item.forks_count}</span>
@@ -77,6 +81,7 @@ const UserRepository = ({ repos }) => {
         </div>
       )}
       <SurfingButtons
+        searchParams={searchParams}
         setSearchParams={setSearchParams}
         setIsPageLoading={setIsPageLoading}
         nrOfPages={nrOfPages}

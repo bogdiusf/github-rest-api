@@ -9,7 +9,8 @@ export const UserRepositoryStyles = {
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
-    height: 420
+    height: 'auto',
+    minHeight: 420
   },
 
   repo: {

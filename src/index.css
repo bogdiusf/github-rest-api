@@ -18,7 +18,7 @@
 
 body {
   margin: 0;
-  padding: 50px;
+  padding: 40px;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -27,7 +27,8 @@ body {
 }
 
 input,
-a {
+a,
+button {
   all: unset;
 }
 

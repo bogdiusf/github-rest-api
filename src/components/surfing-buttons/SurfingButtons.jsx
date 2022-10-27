@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const SurfingButtons = ({ setSearchParams, setIsPageLoading, nrOfPages }) => {
+const SurfingButtons = ({
+  searchParams,
+  setSearchParams,
+  setIsPageLoading,
+  nrOfPages
+}) => {
+  const [selectedPage, setSelectedPage] = useState()
+
+  useEffect(() => {
+    const currentPage = parseInt(searchParams.get('page'))
+    setSelectedPage(currentPage)
+  }, [searchParams])
+
   const handlePages = (pageNr) => {
     setIsPageLoading(true)
-    setSearchParams({ page: pageNr + 1 })
+    setSearchParams({ page: pageNr })
     setTimeout(() => {
       setIsPageLoading(false)
     }, 1500)
@@ -15,8 +27,25 @@ const SurfingButtons = ({ setSearchParams, setIsPageLoading, nrOfPages }) => {
     pageButtons.push(
       <motion.button
         key={i}
-        onClick={() => handlePages(i)}
-        style={{ minWidth: '15%', flex: 2, cursor: 'pointer' }}
+        animate={
+          i + 1 === selectedPage
+            ? {
+                backgroundColor: '#3d3d3d',
+                scale: 1.2,
+                fontWeight: 700
+              }
+            : { backgroundColor: '#242424', scale: 1, fontWeight: 400 }
+        }
+        whileHover={{ scale: 1.2 }}
+        onClick={() => handlePages(i + 1)}
+        style={{
+          cursor: 'pointer',
+          color: 'white',
+          textAlign: 'center',
+          width: 50,
+          height: 50,
+          borderRadius: 2
+        }}
         //TODO: styles
       >
         {i + 1}
@@ -24,7 +53,7 @@ const SurfingButtons = ({ setSearchParams, setIsPageLoading, nrOfPages }) => {
     )
 
   return (
-    <motion.div style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <motion.div style={{ display: 'flex', gap: 20, margin: '0 auto' }}>
       {pageButtons}
     </motion.div>
   )

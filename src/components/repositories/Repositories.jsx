@@ -52,18 +52,20 @@ const Repositories = () => {
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence mode="popLayout">
         {repoLoading ? (
-          <FadeTransition delay={0.2}>
-            <Loader />
-          </FadeTransition>
+          <motion.div key="loader">
+            <FadeTransition delay={0.2}>
+              <Loader />
+            </FadeTransition>
+          </motion.div>
         ) : (
           repos.length > 0 && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1, transition: { duration: 1 } }}
+              exit={{ scale: 1, opacity: 0 }}
+              transition={{ type: 'spring' }}
               key="child"
             >
               <motion.main className={classes.repoContainer}>
@@ -71,19 +73,19 @@ const Repositories = () => {
                 {repos?.map((item, index) => (
                   <Repository key={index} item={item} index={index} />
                 ))}
-                <FadeTransition delay={0.3}>
-                  <SurfingButtons
-                    searchParams={searchParams}
-                    setSearchParams={setSearchParams}
-                    nrOfPages={nrOfPages}
-                    repoLoading={repoLoading}
-                    setRepoLoading={setRepoLoading}
-                  />
-                </FadeTransition>
               </motion.main>
             </motion.div>
           )
         )}
+        <motion.div layout key="buttons" transition={{ duration: 1 }}>
+          <SurfingButtons
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            nrOfPages={nrOfPages}
+            repoLoading={repoLoading}
+            setRepoLoading={setRepoLoading}
+          />
+        </motion.div>
       </AnimatePresence>
     </>
   )

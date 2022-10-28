@@ -1,4 +1,11 @@
 export const HomeStyles = {
+  homeContainer: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+
   header: {
     display: 'flex',
     flexDirection: 'column',
@@ -30,6 +37,7 @@ export const HomeStyles = {
   button: {
     padding: [15, 20],
     border: 'none',
+    backgroundColor: '#FFFFFF',
     borderRadius: 2,
     display: 'flex',
     alignItems: 'center',

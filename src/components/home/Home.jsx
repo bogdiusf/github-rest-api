@@ -32,7 +32,7 @@ function Home() {
   }
 
   return (
-    <FadeTransition>
+    <FadeTransition className={classes.homeContainer}>
       <header className={classes.header}>
         <h1>Not enough info about your future employee?</h1>
         <h2>Grab his spare time projects now!</h2>
@@ -70,7 +70,7 @@ function Home() {
               }
               onClick={handleSubmit}
             >
-              <AiOutlineArrowRight />
+              <AiOutlineArrowRight fill="#000000" />
             </motion.button>
           )}
         </AnimatePresence>

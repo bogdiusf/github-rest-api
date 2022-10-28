@@ -4,11 +4,16 @@ import React from 'react'
 // Style related components / libraries
 import { motion, AnimatePresence } from 'framer-motion'
 
-const FadeTransition = ({ children, delay = 0, isRepoComp }) => {
+const FadeTransition = ({
+  children,
+  delay = 0,
+  isRepoComp,
+  className = ''
+}) => {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        layout
+        className={className}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{

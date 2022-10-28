@@ -1,7 +1,7 @@
 // React libraries
 import React, { useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 // Style related components / libraries
@@ -20,6 +20,7 @@ const useStyles = createUseStyles(ProfileCardStyles)
 
 const ProfileCard = () => {
   const { fetchedData } = useSelector((state) => state)
+  const { user } = useParams()
   const navigate = useNavigate()
   const { userData } = fetchedData
 
@@ -35,10 +36,8 @@ const ProfileCard = () => {
   const { fetchUserData } = FetchData()
 
   useEffect(() => {
-    if (userData && Object.keys(userData).length === 0) {
-      fetchUserData()
-    }
-  }, [userData])
+    fetchUserData()
+  }, [])
 
   return (
     <motion.header className={classes.header}>

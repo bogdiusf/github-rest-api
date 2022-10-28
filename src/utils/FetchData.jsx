@@ -11,9 +11,8 @@ const FetchData = () => {
 
   const fetchRepoData = async (pageNumber = 1) => {
     try {
-      // dispatch({ type: 'SET_LOADER', payload: true })
       const repoResponse = await fetch(
-        `${BASE_URL}/${user}/repos?per_page=10&page=${pageNumber}`,
+        `${BASE_URL}/${user}/repos?per_page=5&page=${pageNumber}`,
         {
           headers: {
             Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`
@@ -29,14 +28,10 @@ const FetchData = () => {
     } catch (e) {
       console.log(e)
     }
-    // setTimeout(() => {
-    //   dispatch({ type: 'SET_LOADER', payload: false })
-    // }, 2000)
   }
 
   const fetchUserData = async () => {
     try {
-      dispatch({ type: 'SET_LOADER', payload: true })
       const userResponse = await fetch(`${BASE_URL}/${user}`, {
         headers: {
           Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`
@@ -51,9 +46,6 @@ const FetchData = () => {
     } catch (e) {
       console.log(e)
     }
-    setTimeout(() => {
-      dispatch({ type: 'SET_LOADER', payload: false })
-    }, 2000)
   }
 
   return { fetchRepoData, fetchUserData }

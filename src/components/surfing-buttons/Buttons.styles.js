@@ -1,10 +1,8 @@
 export const ButtonsStyles = {
   buttonsContainer: {
     display: 'flex',
-    gap: 20,
     justifyContent: 'space-evenly',
-    flexWrap: 'wrap',
-    marginTop: 10
+    flexWrap: 'wrap'
   },
   button: {
     cursor: 'pointer',

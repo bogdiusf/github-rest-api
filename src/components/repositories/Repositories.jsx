@@ -29,7 +29,7 @@ const Repositories = () => {
   const { fetchRepoData } = FetchData()
 
   const currentPage = parseInt(searchParams.get('page'))
-  const nrOfPages = Math.ceil(userData.public_repos / 10)
+  const nrOfPages = Math.ceil(userData.public_repos / 5)
 
   useEffect(() => {
     if (urlPageNr < 1 || isNaN(searchParams.get('page'))) {
@@ -53,23 +53,26 @@ const Repositories = () => {
   return (
     <>
       <AnimatePresence mode="popLayout">
+        <h2 className={classes.header}>Repositories</h2>
         {repoLoading ? (
           <motion.div key="loader">
-            <FadeTransition delay={0.2}>
+            <FadeTransition>
               <Loader />
             </FadeTransition>
           </motion.div>
         ) : (
           repos.length > 0 && (
             <motion.div
+              key="child"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1, transition: { duration: 1 } }}
-              exit={{ scale: 1, opacity: 0 }}
-              transition={{ type: 'spring' }}
-              key="child"
+              exit={{
+                scale: 0,
+                opacity: 0
+              }}
+              transition={{ duration: 1 }}
             >
               <motion.main className={classes.repoContainer}>
-                <h1>Repositories</h1>
                 {repos?.map((item, index) => (
                   <Repository key={index} item={item} index={index} />
                 ))}

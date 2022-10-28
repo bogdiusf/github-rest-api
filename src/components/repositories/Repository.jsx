@@ -17,7 +17,7 @@ const Repository = ({ item, index }) => {
   const classes = useStyles()
 
   return (
-    <FadeTransition delay={index * 0.15} isRepoComp={true}>
+    <FadeTransition delay={index * 0.15}>
       <motion.div
         className={classes.repo}
         transition={{ duration: 0.5, type: 'spring' }}

@@ -9,7 +9,7 @@ const useStyles = createUseStyles({
   loadingContainer: ({ location }) => ({
     maxWidth: 'auto',
     minWidth: 800,
-    height: location === 'fromHome' ? '100vh' : 420,
+    height: location === 'fromHome' ? '90vh' : 420,
     display: 'flex',
     gap: 5,
     justifyContent: 'center',

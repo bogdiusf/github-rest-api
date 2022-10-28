@@ -5,6 +5,11 @@ const commonDisplayStyles = {
 }
 
 export const RepositoryStyles = {
+  header: {
+    padding: 0,
+    margin: [20, 0, 0, 0]
+  },
+
   repoContainer: {
     display: 'flex',
     flexDirection: 'column',

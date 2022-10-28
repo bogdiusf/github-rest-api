@@ -25,15 +25,15 @@ function Home() {
   }
 
   const submitButtonTransition = {
-    initial: { opacity: 0, scale: 0 },
-    animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0 },
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
     transition: { duration: 0.5 }
   }
 
   return (
     <FadeTransition className={classes.homeContainer}>
-      <header className={classes.header}>
+      <header key="1" className={classes.header}>
         <h1>Not enough info about your future employee?</h1>
         <h2>Grab his spare time projects now!</h2>
         <motion.div
@@ -43,8 +43,8 @@ function Home() {
           <ImGithub />
         </motion.div>
       </header>
-      <main className={classes.main}>
-        <AnimatePresence mode="popLayout">
+      <AnimatePresence mode="popLayout">
+        <main key="2" className={classes.main}>
           <motion.input
             layout
             key="input"
@@ -56,13 +56,12 @@ function Home() {
           />
           {inputUsername && (
             <motion.button
-              layout
               {...submitButtonTransition}
               className={classes.button}
               whileHover={
                 inputUsername
                   ? {
-                      scale: 1.1,
+                      scale: 1.2,
                       cursor: 'pointer',
                       transition: { type: 'spring' }
                     }
@@ -73,8 +72,8 @@ function Home() {
               <AiOutlineArrowRight fill="#000000" />
             </motion.button>
           )}
-        </AnimatePresence>
-      </main>
+        </main>
+      </AnimatePresence>
     </FadeTransition>
   )
 }

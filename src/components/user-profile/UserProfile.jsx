@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    gap: 30,
+    gap: 20,
     width: 'auto',
     maxWidth: 'fit-content',
     minWidth: 800

@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss'
 
 // Style related components / libraries
 import { ButtonsStyles } from './Buttons.styles'
+import { motion } from 'framer-motion'
 
 // Others
 import Button from './Button'
@@ -29,12 +30,12 @@ const SurfingButtons = ({
       return
     } else {
       setRepoLoading(true)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
       setSearchParams({ page: pageNr })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
 
       setTimeout(() => {
         setRepoLoading(false)
-      }, 2000)
+      }, 1500)
     }
   }
 
@@ -50,7 +51,14 @@ const SurfingButtons = ({
       />
     )
 
-  return <div className={classes.buttonsContainer}>{surfingButtons}</div>
+  return (
+    <motion.div
+      animate={{ transition: { delay: 0.5 } }}
+      className={classes.buttonsContainer}
+    >
+      {surfingButtons}
+    </motion.div>
+  )
 }
 
 export default SurfingButtons

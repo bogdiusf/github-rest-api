@@ -1,6 +1,6 @@
 export const HomeStyles = {
   homeContainer: {
-    height: '100vh',
+    height: '90vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'

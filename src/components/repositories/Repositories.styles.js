@@ -4,13 +4,12 @@ const commonDisplayStyles = {
   alignItems: 'center'
 }
 
-export const UserRepositoryStyles = {
+export const RepositoryStyles = {
   repoContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
-    height: 'auto',
-    minHeight: 420
+    height: 'auto'
   },
 
   repo: {

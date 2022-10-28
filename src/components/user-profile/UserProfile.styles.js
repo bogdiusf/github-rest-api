@@ -4,6 +4,8 @@ export const UserProfileStyles = {
     display: 'flex',
     flexDirection: 'column',
     gap: 30,
+    width: 'auto',
+    minHeight: '100vh',
     maxWidth: '50vw',
     minWidth: 800
   },
@@ -11,7 +13,7 @@ export const UserProfileStyles = {
   header: {
     height: 'auto',
     width: '100%',
-    minWidth: 350,
+    minWidth: 800,
     backgroundColor: '#3d3d3d',
     display: 'flex',
     borderRadius: [5, 5, 0, 0],
@@ -84,12 +86,5 @@ export const UserProfileStyles = {
       gap: 5,
       lineHeight: 1.5
     }
-  },
-
-  userRepoContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20,
-    minHeight: 565
   }
 }

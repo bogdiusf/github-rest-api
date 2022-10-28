@@ -1,4 +1,7 @@
+// React libraries
 import React from 'react'
+
+// Style related components / libraries
 import { motion } from 'framer-motion'
 
 const FadeTransition = ({ children, delay = 0, isRepoComp }) => {

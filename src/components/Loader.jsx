@@ -1,10 +1,13 @@
+// React libraries
 import React from 'react'
+
+// Style related components / libraries
 import { motion } from 'framer-motion'
 
 const loadingContainer = {
   maxWidth: '50vw',
   minWidth: 800,
-  height: 420,
+  height: 850,
   display: 'flex',
   gap: 5,
   justifyContent: 'center',

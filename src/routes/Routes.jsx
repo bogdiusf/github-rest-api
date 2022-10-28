@@ -1,5 +1,8 @@
+// React libraries
 import React from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+
+// Style related components / libraries
 import { AnimatePresence } from 'framer-motion'
 
 import Home from '../components/home/Home'

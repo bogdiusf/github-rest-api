@@ -1,11 +1,11 @@
 // React libraries
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { createUseStyles } from 'react-jss'
 
 // Style related components / libraries
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { AiOutlineHome } from 'react-icons/ai'
 import { AiOutlineMail } from 'react-icons/ai'
 import { GoLocation } from 'react-icons/go'
@@ -17,19 +17,21 @@ import { UserProfileStyles } from './UserProfile.styles'
 import UserRepository from '../repositories/Repositories'
 import Loader from '../Loader'
 import FadeTransition from '../shared/FadeTransition'
-
-// Utils
 import FetchData from '../../utils/FetchData'
 
 const useStyles = createUseStyles(UserProfileStyles)
 
 const UserProfile = () => {
-  const { fetchedData } = useSelector((state) => state)
+  const [searchParams, setSearchParams] = useSearchParams()
   const { user } = useParams()
+  const { fetchedData } = useSelector((state) => state)
+
+  const currentPage = parseInt(searchParams.get('page'))
+
   const navigate = useNavigate()
 
-  const fetchData = FetchData()
   const { repos, userData, isLoading } = fetchedData
+  const { fetchUserData, fetchRepoData } = FetchData()
 
   const city = userData.location?.replace(/ ,.*/, '')
   const blogUrl = !userData.blog
@@ -41,8 +43,18 @@ const UserProfile = () => {
   const classes = useStyles()
 
   useEffect(() => {
-    fetchData()
+    if (searchParams.get('page') === null || searchParams.get('page') === '') {
+      setSearchParams({ page: 1 })
+    }
+  }, [searchParams])
+
+  useEffect(() => {
+    fetchUserData(currentPage)
   }, [user])
+
+  useEffect(() => {
+    fetchRepoData(currentPage)
+  }, [currentPage])
 
   return (
     <>
@@ -51,7 +63,6 @@ const UserProfile = () => {
           <Loader />
         </FadeTransition>
       ) : (
-        // TODO: check why FadeTransition is not working for the following div
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -97,7 +108,7 @@ const UserProfile = () => {
                     )
                   }
                 >
-                  <span>{repos.length}</span>
+                  <span>{userData.public_repos}</span>
                   <span> repositories</span>
                 </motion.div>
                 <motion.div
@@ -171,9 +182,10 @@ const UserProfile = () => {
               </div>
             </div>
           </motion.header>
-          <main className={classes.userRepoContainer}>
-            {repos.length > 0 && <UserRepository repos={repos} />}
-          </main>
+          <UserRepository
+            nrOfPages={Math.ceil(userData.public_repos / 10)}
+            repos={repos}
+          />
         </motion.div>
       )}
     </>

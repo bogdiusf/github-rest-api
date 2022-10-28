@@ -1,62 +1,46 @@
+// React libraries
 import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { createUseStyles } from 'react-jss'
 
-const SurfingButtons = ({
-  searchParams,
-  setSearchParams,
-  setIsPageLoading,
-  nrOfPages
-}) => {
+// Style related components / libraries
+import { ButtonsStyles } from './Buttons.styles'
+
+// Others
+import Button from './Button'
+
+const useStyles = createUseStyles(ButtonsStyles)
+
+const SurfingButtons = ({ searchParams, setSearchParams, nrOfPages }) => {
   const [selectedPage, setSelectedPage] = useState()
 
+  const classes = useStyles()
+
   useEffect(() => {
-    const currentPage = parseInt(searchParams.get('page'))
-    setSelectedPage(currentPage)
+    setSelectedPage(parseInt(searchParams.get('page')))
   }, [searchParams])
 
   const handlePages = (pageNr) => {
-    setIsPageLoading(true)
-    setSearchParams({ page: pageNr })
-    setTimeout(() => {
-      setIsPageLoading(false)
-    }, 1500)
+    if (selectedPage === pageNr) {
+      return
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      setSearchParams({ page: pageNr })
+    }
   }
 
-  const pageButtons = []
+  const surfingButtons = []
   for (let i = 0; i < nrOfPages; i++)
-    pageButtons.push(
-      <motion.button
+    surfingButtons.push(
+      <Button
         key={i}
-        animate={
-          i + 1 === selectedPage
-            ? {
-                backgroundColor: '#3d3d3d',
-                scale: 1.2,
-                fontWeight: 700
-              }
-            : { backgroundColor: '#242424', scale: 1, fontWeight: 400 }
-        }
-        whileHover={{ scale: 1.2 }}
-        onClick={() => handlePages(i + 1)}
-        style={{
-          cursor: 'pointer',
-          color: 'white',
-          textAlign: 'center',
-          width: 50,
-          height: 50,
-          borderRadius: 2
-        }}
-        //TODO: styles
-      >
-        {i + 1}
-      </motion.button>
+        i={i}
+        selectedPage={selectedPage}
+        handlePages={handlePages}
+        classes={classes}
+      />
     )
 
-  return (
-    <motion.div style={{ display: 'flex', gap: 20, margin: '0 auto' }}>
-      {pageButtons}
-    </motion.div>
-  )
+  return <div className={classes.buttonsContainer}>{surfingButtons}</div>
 }
 
 export default SurfingButtons

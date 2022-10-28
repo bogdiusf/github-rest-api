@@ -1,18 +1,23 @@
 // React libraries
 import React from 'react'
+import { createUseStyles } from 'react-jss'
 
 // Style related components / libraries
 import { motion } from 'framer-motion'
+import FadeTransition from './shared/FadeTransition'
 
-const loadingContainer = {
-  maxWidth: '50vw',
-  minWidth: 800,
-  height: 850,
-  display: 'flex',
-  gap: 5,
-  justifyContent: 'center',
-  alignItems: 'center'
-}
+const useStyles = createUseStyles({
+  loadingContainer: ({ location }) => ({
+    maxWidth: 'auto',
+    minWidth: 800,
+    height: location === 'fromHome' ? '100vh' : 420,
+    display: 'flex',
+    gap: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  })
+})
+
 const loadingCircle = {
   display: 'block',
   width: '1rem',
@@ -49,23 +54,27 @@ const loadingCircleTransition = {
   ease: 'easeInOut'
 }
 
-const Loader = () => {
+const Loader = ({ location = 'fromRepos' }) => {
+  const classes = useStyles({ location })
+
   return (
-    <motion.div
-      style={loadingContainer}
-      variants={loadingContainerVariants}
-      initial="start"
-      animate="end"
-    >
-      {[1, 2, 3, 4].map((item) => (
-        <motion.span
-          key={item}
-          style={loadingCircle}
-          variants={loadingCircleVariants}
-          transition={loadingCircleTransition}
-        />
-      ))}
-    </motion.div>
+    <FadeTransition>
+      <motion.div
+        className={classes.loadingContainer}
+        variants={loadingContainerVariants}
+        initial="start"
+        animate="end"
+      >
+        {[1, 2, 3, 4].map((item) => (
+          <motion.span
+            key={item}
+            style={loadingCircle}
+            variants={loadingCircleVariants}
+            transition={loadingCircleTransition}
+          />
+        ))}
+      </motion.div>
+    </FadeTransition>
   )
 }
 

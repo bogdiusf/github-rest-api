@@ -10,7 +10,12 @@ import Button from './Button'
 
 const useStyles = createUseStyles(ButtonsStyles)
 
-const SurfingButtons = ({ searchParams, setSearchParams, nrOfPages }) => {
+const SurfingButtons = ({
+  searchParams,
+  setSearchParams,
+  nrOfPages,
+  setRepoLoading
+}) => {
   const [selectedPage, setSelectedPage] = useState()
 
   const classes = useStyles()
@@ -23,8 +28,13 @@ const SurfingButtons = ({ searchParams, setSearchParams, nrOfPages }) => {
     if (selectedPage === pageNr) {
       return
     } else {
+      setRepoLoading(true)
       window.scrollTo({ top: 0, behavior: 'smooth' })
       setSearchParams({ page: pageNr })
+
+      setTimeout(() => {
+        setRepoLoading(false)
+      }, 2000)
     }
   }
 

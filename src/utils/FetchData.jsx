@@ -11,7 +11,7 @@ const FetchData = () => {
 
   const fetchRepoData = async (pageNumber = 1) => {
     try {
-      dispatch({ type: 'SET_LOADER', payload: true })
+      // dispatch({ type: 'SET_LOADER', payload: true })
       const repoResponse = await fetch(
         `${BASE_URL}/${user}/repos?per_page=10&page=${pageNumber}`,
         {
@@ -29,9 +29,9 @@ const FetchData = () => {
     } catch (e) {
       console.log(e)
     }
-    setTimeout(() => {
-      dispatch({ type: 'SET_LOADER', payload: false })
-    }, 2000)
+    // setTimeout(() => {
+    //   dispatch({ type: 'SET_LOADER', payload: false })
+    // }, 2000)
   }
 
   const fetchUserData = async () => {

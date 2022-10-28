@@ -1,15 +1,4 @@
-export const UserProfileStyles = {
-  userProfileContainer: {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 30,
-    width: 'auto',
-    minHeight: '100vh',
-    maxWidth: '50vw',
-    minWidth: 800
-  },
-
+export const ProfileCardStyles = {
   header: {
     height: 'auto',
     width: '100%',
@@ -30,7 +19,6 @@ export const UserProfileStyles = {
   homeBtn: {
     height: 40,
     width: 40,
-    marginTop: -10,
     marginLeft: -10,
     '& svg': {
       fontSize: 40,

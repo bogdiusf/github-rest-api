@@ -4,7 +4,6 @@ import { createUseStyles } from 'react-jss'
 
 // Style related components / libraries
 import { motion } from 'framer-motion'
-import FadeTransition from './shared/FadeTransition'
 
 const useStyles = createUseStyles({
   loadingContainer: ({ location }) => ({
@@ -28,12 +27,18 @@ const loadingCircle = {
 
 const loadingContainerVariants = {
   start: {
+    opacity: 0,
+    scale: 0,
     transition: {
+      duration: 1,
       staggerChildren: 0.2
     }
   },
   end: {
+    opacity: 1,
+    scale: 1,
     transition: {
+      duration: 1,
       staggerChildren: 0.2
     }
   }
@@ -58,23 +63,21 @@ const Loader = ({ location = 'fromRepos' }) => {
   const classes = useStyles({ location })
 
   return (
-    <FadeTransition>
-      <motion.div
-        className={classes.loadingContainer}
-        variants={loadingContainerVariants}
-        initial="start"
-        animate="end"
-      >
-        {[1, 2, 3, 4].map((item) => (
-          <motion.span
-            key={item}
-            style={loadingCircle}
-            variants={loadingCircleVariants}
-            transition={loadingCircleTransition}
-          />
-        ))}
-      </motion.div>
-    </FadeTransition>
+    <motion.div
+      className={classes.loadingContainer}
+      variants={loadingContainerVariants}
+      initial="start"
+      animate="end"
+    >
+      {[1, 2, 3, 4].map((item) => (
+        <motion.span
+          key={item}
+          style={loadingCircle}
+          variants={loadingCircleVariants}
+          transition={loadingCircleTransition}
+        />
+      ))}
+    </motion.div>
   )
 }
 

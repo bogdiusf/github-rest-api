@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss'
 import { useSearchParams } from 'react-router-dom'
 
 // Style related components / libraries
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { RepositoryStyles } from './Repositories.styles'
 
 // Others
@@ -52,27 +52,39 @@ const Repositories = () => {
 
   return (
     <>
-      {repoLoading ? (
-        <Loader />
-      ) : (
-        repos.length > 0 && (
-          <FadeTransition>
-            <motion.main className={classes.repoContainer}>
-              <h1>Repositories</h1>
-              {repos?.map((item, index) => (
-                <Repository key={index} item={item} index={index} />
-              ))}
-              <SurfingButtons
-                searchParams={searchParams}
-                setSearchParams={setSearchParams}
-                nrOfPages={nrOfPages}
-                repoLoading={repoLoading}
-                setRepoLoading={setRepoLoading}
-              />
-            </motion.main>
+      <AnimatePresence>
+        {repoLoading ? (
+          <FadeTransition delay={0.2}>
+            <Loader />
           </FadeTransition>
-        )
-      )}
+        ) : (
+          repos.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              key="child"
+            >
+              <motion.main className={classes.repoContainer}>
+                <h1>Repositories</h1>
+                {repos?.map((item, index) => (
+                  <Repository key={index} item={item} index={index} />
+                ))}
+                <FadeTransition delay={0.3}>
+                  <SurfingButtons
+                    searchParams={searchParams}
+                    setSearchParams={setSearchParams}
+                    nrOfPages={nrOfPages}
+                    repoLoading={repoLoading}
+                    setRepoLoading={setRepoLoading}
+                  />
+                </FadeTransition>
+              </motion.main>
+            </motion.div>
+          )
+        )}
+      </AnimatePresence>
     </>
   )
 }

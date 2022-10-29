@@ -9,8 +9,7 @@ const Button = ({ i, selectedPage, handlePages, classes }) => {
     <motion.button
       initial={{ opacity: 0 }}
       animate={{
-        backgroundColor: i + 1 === selectedPage ? '#FFFFFF' : '#242424',
-        color: i + 1 === selectedPage ? '#242424' : '#FFFFFF',
+        backgroundColor: i + 1 === selectedPage ? '#3D3D3D' : '#242424',
         scale: i + 1 === selectedPage ? 1.2 : 0.8,
         fontWeight: i + 1 === selectedPage ? 700 : 400,
         border: `1px solid ${i + 1 === selectedPage ? '#242424' : '#3d3d3d'}`,

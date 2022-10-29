@@ -5,6 +5,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 // Style related components / libraries
 import { AnimatePresence } from 'framer-motion'
 
+// Others
 import Home from '../components/home/Home'
 import UserProfile from '../components/user-profile/UserProfile'
 import UserNotFound from '../components/user-not-found/UserNotFound'

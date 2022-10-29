@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss'
 
 // Others
 import Repositories from '../repositories/Repositories'
-import Loader from '../Loader'
+import Loader from '../shared/Loader'
 import ProfileCard from './ProfileCard'
 import FadeTransition from '../shared/FadeTransition'
 

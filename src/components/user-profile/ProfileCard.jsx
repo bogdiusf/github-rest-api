@@ -1,7 +1,7 @@
 // React libraries
 import React, { useEffect } from 'react'
 import { createUseStyles } from 'react-jss'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 // Style related components / libraries
@@ -19,12 +19,9 @@ import FetchData from '../../utils/FetchData'
 const useStyles = createUseStyles(ProfileCardStyles)
 
 const ProfileCard = () => {
-  const { fetchedData } = useSelector((state) => state)
-  const { user } = useParams()
   const navigate = useNavigate()
+  const { fetchedData } = useSelector((state) => state)
   const { userData } = fetchedData
-
-  const classes = useStyles()
 
   const city = userData.location?.replace(/ ,.*/, '')
   const blogUrl = !userData.blog
@@ -38,6 +35,8 @@ const ProfileCard = () => {
   useEffect(() => {
     fetchUserData()
   }, [])
+
+  const classes = useStyles()
 
   return (
     <motion.header className={classes.header}>

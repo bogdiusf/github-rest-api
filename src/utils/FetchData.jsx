@@ -1,4 +1,5 @@
 // React libraries
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -11,6 +12,7 @@ const FetchData = () => {
 
   const fetchRepoData = async (pageNumber = 1) => {
     try {
+      dispatch({ type: 'SET_LOADER', payload: true })
       const repoResponse = await fetch(
         `${BASE_URL}/${user}/repos?per_page=5&page=${pageNumber}`,
         {
@@ -28,6 +30,7 @@ const FetchData = () => {
     } catch (e) {
       console.log(e)
     }
+    setTimeout(() => dispatch({ type: 'SET_LOADER', payload: false }), 2000)
   }
 
   const fetchUserData = async () => {

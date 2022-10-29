@@ -5,7 +5,7 @@ export const ProfileCardStyles = {
     minWidth: 800,
     backgroundColor: '#3d3d3d',
     display: 'flex',
-    borderRadius: [5, 5, 0, 0],
+    borderRadius: 5,
     padding: [20, 35],
     gap: 45
   },

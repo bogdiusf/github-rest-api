@@ -5,7 +5,6 @@ const updateReposReducer = (state = { repos: [], userData: {} }, action) => {
     case 'SET_REPOS': {
       return { ...state, repos: action.payload }
     }
-
     case 'SET_USER_DATA': {
       return { ...state, userData: action.payload }
     }

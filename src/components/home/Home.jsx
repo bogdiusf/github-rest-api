@@ -15,21 +15,14 @@ import FadeTransition from '../shared/FadeTransition'
 const useStyles = createUseStyles(HomeStyles)
 
 function Home() {
-  const navigate = useNavigate()
   const [inputUsername, setInputUsername] = useState('')
-
-  const classes = useStyles()
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
     navigate(`/user/${inputUsername}?page=1`)
   }
 
-  const submitButtonTransition = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-    transition: { duration: 0.5 }
-  }
+  const classes = useStyles()
 
   return (
     <FadeTransition className={classes.homeContainer}>
@@ -56,7 +49,10 @@ function Home() {
           />
           {inputUsername && (
             <motion.button
-              {...submitButtonTransition}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
               className={classes.button}
               whileHover={
                 inputUsername
@@ -69,7 +65,7 @@ function Home() {
               }
               onClick={handleSubmit}
             >
-              <AiOutlineArrowRight fill="#000000" />
+              <AiOutlineArrowRight fill="#242424" />
             </motion.button>
           )}
         </main>

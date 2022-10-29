@@ -7,30 +7,26 @@ import { useSearchParams } from 'react-router-dom'
 // Style related components / libraries
 import { AnimatePresence, motion } from 'framer-motion'
 import { RepositoryStyles } from './Repositories.styles'
-import { BiSad } from 'react-icons/bi'
 
 // Others
 import FadeTransition from '../shared/FadeTransition'
 import Repository from './Repository'
 import SurfingButtons from '../surfing-buttons/SurfingButtons'
 import FetchData from '../../utils/FetchData'
-import Loader from '../Loader'
+import Loader from '../shared/Loader'
 
 const useStyles = createUseStyles(RepositoryStyles)
 
 const Repositories = () => {
-  const [repoLoading, setRepoLoading] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams()
-  const urlPageNr = parseInt(searchParams.get('page'))
-
   const { fetchedData } = useSelector((state) => state)
   const { repos, userData } = fetchedData
-  const { fetchRepoData } = FetchData()
 
+  const urlPageNr = parseInt(searchParams.get('page'))
   const currentPage = parseInt(searchParams.get('page'))
   const nrOfPages = Math.ceil(userData.public_repos / 5)
-  const classes = useStyles()
+  const { fetchRepoData } = FetchData()
 
   useEffect(() => {
     if (searchParams.get('page') === null || searchParams.get('page') === '') {
@@ -49,13 +45,18 @@ const Repositories = () => {
     fetchRepoData(currentPage)
   }, [currentPage])
 
+  const classes = useStyles()
+
   return (
     <>
       <AnimatePresence mode="popLayout">
         <h2 className={classes.header}>
-          {repos.length ? 'Repositories' : 'User has no public repositories'}
+          {repos.length
+            ? 'Repositories'
+            : "Dude hates to code in his spare time. Don't even think about it. NEXT!" +
+              `👊`}
         </h2>
-        {repoLoading ? (
+        {isLoading ? (
           <motion.div key="loader">
             <FadeTransition>
               <Loader />
@@ -86,8 +87,7 @@ const Repositories = () => {
             searchParams={searchParams}
             setSearchParams={setSearchParams}
             nrOfPages={nrOfPages}
-            repoLoading={repoLoading}
-            setRepoLoading={setRepoLoading}
+            setIsLoading={setIsLoading}
           />
         </motion.div>
       </AnimatePresence>

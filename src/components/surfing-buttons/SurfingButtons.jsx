@@ -15,29 +15,25 @@ const SurfingButtons = ({
   searchParams,
   setSearchParams,
   nrOfPages,
-  setRepoLoading
+  setIsLoading
 }) => {
   const [selectedPage, setSelectedPage] = useState()
-
-  const classes = useStyles()
-
-  useEffect(() => {
-    setSelectedPage(parseInt(searchParams.get('page')))
-  }, [searchParams])
 
   const handlePages = (pageNr) => {
     if (selectedPage === pageNr) {
       return
     } else {
-      setRepoLoading(true)
+      setIsLoading(true)
       setSearchParams({ page: pageNr })
       window.scrollTo({ top: 0, behavior: 'smooth' })
 
       setTimeout(() => {
-        setRepoLoading(false)
+        setIsLoading(false)
       }, 1500)
     }
   }
+
+  const classes = useStyles()
 
   const surfingButtons = []
   for (let i = 0; i < nrOfPages; i++)
@@ -50,6 +46,10 @@ const SurfingButtons = ({
         classes={classes}
       />
     )
+
+  useEffect(() => {
+    setSelectedPage(parseInt(searchParams.get('page')))
+  }, [searchParams])
 
   return (
     <motion.div

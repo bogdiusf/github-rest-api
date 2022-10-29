@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom'
 // Style related components / libraries
 import { AnimatePresence, motion } from 'framer-motion'
 import { RepositoryStyles } from './Repositories.styles'
+import { BiSad } from 'react-icons/bi'
 
 // Others
 import FadeTransition from '../shared/FadeTransition'
@@ -21,7 +22,6 @@ const Repositories = () => {
   const [repoLoading, setRepoLoading] = useState(false)
 
   const [searchParams, setSearchParams] = useSearchParams()
-  const classes = useStyles()
   const urlPageNr = parseInt(searchParams.get('page'))
 
   const { fetchedData } = useSelector((state) => state)
@@ -30,8 +30,13 @@ const Repositories = () => {
 
   const currentPage = parseInt(searchParams.get('page'))
   const nrOfPages = Math.ceil(userData.public_repos / 5)
+  const classes = useStyles()
 
   useEffect(() => {
+    if (searchParams.get('page') === null || searchParams.get('page') === '') {
+      setSearchParams({ page: 1 })
+    }
+
     if (urlPageNr < 1 || isNaN(searchParams.get('page'))) {
       setSearchParams({ page: 1 })
     }
@@ -41,19 +46,15 @@ const Repositories = () => {
   }, [])
 
   useEffect(() => {
-    if (searchParams.get('page') === null || searchParams.get('page') === '') {
-      setSearchParams({ page: 1 })
-    }
-  }, [searchParams])
-
-  useEffect(() => {
     fetchRepoData(currentPage)
   }, [currentPage])
 
   return (
     <>
       <AnimatePresence mode="popLayout">
-        <h2 className={classes.header}>Repositories</h2>
+        <h2 className={classes.header}>
+          {repos.length ? 'Repositories' : 'User has no public repositories'}
+        </h2>
         {repoLoading ? (
           <motion.div key="loader">
             <FadeTransition>

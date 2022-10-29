@@ -27,12 +27,13 @@ export const HomeStyles = {
 
   input: {
     backgroundColor: 'white',
-    color: 'black',
+    color: '#242424',
     padding: [10, 20],
     marginRight: 10,
     borderRadius: 2,
     width: 300,
-    height: 30
+    height: 30,
+    fontWeight: 500
   },
   button: {
     padding: [15, 20],

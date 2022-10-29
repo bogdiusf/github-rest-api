@@ -22,17 +22,17 @@ export const RepositoryStyles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#3d3d3d',
+    backgroundColor: '',
     padding: 25,
     borderRadius: 2,
-    border: [1, 'solid', 'rgba(255,255,255,0.1)']
+    border: [1, 'solid', '#3D3D3D']
   },
 
   separator: {
     position: 'absolute',
     right: '20%',
     height: '70%',
-    backgroundColor: '#FFF',
+    backgroundColor: '#3D3D3D',
     width: 1
   },
 

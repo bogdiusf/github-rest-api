@@ -6,7 +6,6 @@ export const ButtonsStyles = {
   },
   button: {
     cursor: 'pointer',
-    color: 'white',
     textAlign: 'center',
     width: '10%',
     height: 50,

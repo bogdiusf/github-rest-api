@@ -1,0 +1,29 @@
+Styled texts all around, not-found done, user not found done
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Sat Oct 29 17:29:30 2022 +0300
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	new file:   src/assets/angryicon.png
+#	deleted:    src/assets/default_github_avatar.png
+#	new file:   src/assets/trollface.png
+#	modified:   src/components/404/NotFound.jsx
+#	new file:   src/components/404/NotFound.styles.js
+#	modified:   src/components/home/Home.jsx
+#	modified:   src/components/repositories/Repositories.jsx
+#	renamed:    src/components/Loader.jsx -> src/components/shared/Loader.jsx
+#	modified:   src/components/surfing-buttons/SurfingButtons.jsx
+#	modified:   src/components/user-not-found/UserNotFound.jsx
+#	modified:   src/components/user-profile/ProfileCard.jsx
+#	modified:   src/components/user-profile/ProfileCard.styles.js
+#	modified:   src/components/user-profile/UserProfile.jsx
+#	modified:   src/index.css
+#	modified:   src/redux/reducers/index.js
+#	modified:   src/routes/Routes.jsx
+#	modified:   src/utils/FetchData.jsx
+#

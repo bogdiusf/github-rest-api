@@ -52,17 +52,8 @@ function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
               className={classes.button}
-              whileHover={
-                inputUsername
-                  ? {
-                      scale: 1.2,
-                      cursor: 'pointer',
-                      transition: { type: 'spring' }
-                    }
-                  : { cursor: 'not-allowed' }
-              }
+              whileHover={{ scale: 1.2, cursor: 'pointer' }}
               onClick={handleSubmit}
             >
               <AiOutlineArrowRight fill="#242424" />

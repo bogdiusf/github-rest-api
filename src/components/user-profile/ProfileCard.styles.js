@@ -3,8 +3,8 @@ export const ProfileCardStyles = {
     height: 'auto',
     width: '100%',
     minWidth: 800,
-    backgroundColor: '#3d3d3d',
     display: 'flex',
+    border: [1, 'solid', '#3D3D3D'],
     borderRadius: 5,
     padding: [20, 35],
     gap: 45
@@ -29,7 +29,7 @@ export const ProfileCardStyles = {
 
   avatar: {
     borderRadius: '50%',
-    border: '1px solid white',
+    border: '1px solid #FFFFFF',
     width: 200,
     height: 200,
     marginLeft: 20,

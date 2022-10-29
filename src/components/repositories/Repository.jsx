@@ -24,7 +24,7 @@ const Repository = ({ item, index }) => {
         whileHover={{
           scale: 1.1,
           cursor: 'pointer',
-          backgroundColor: '#000000'
+          backgroundColor: '#3d3d3d'
         }}
         onClick={(e) => window.open(item.clone_url, '_blank')}
       >

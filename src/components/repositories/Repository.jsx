@@ -29,7 +29,6 @@ const Repository = ({ item, index }) => {
         onClick={(e) => window.open(item.clone_url, '_blank')}
       >
         <div>{item.name}</div>
-        <div className={classes.separator} />
         <div className={classes.starAndForkContainer}>
           <div className={classes.center}>
             <span>{item.stargazers_count}</span>

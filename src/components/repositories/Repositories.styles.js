@@ -14,9 +14,9 @@ export const RepositoryStyles = {
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
-    height: 420,
+    minHeight: 420,
     '@media screen and (max-width: 768px)': {
-      height: 540
+      minHeight: 540
     }
   },
 
@@ -30,17 +30,17 @@ export const RepositoryStyles = {
     borderRadius: 2,
     border: [1, 'solid', '#3D3D3D'],
 
+    '&>div:first-child': {
+      width: '80%',
+      display: '-webkit-box',
+      '-webkit-line-clamp': 2,
+      '-webkit-box-orient': 'vertical',
+      overflow: 'hidden'
+    },
+
     '@media screen and (max-width: 768px)': {
       height: 100
     }
-  },
-
-  separator: {
-    position: 'absolute',
-    right: '20%',
-    height: '70%',
-    backgroundColor: '#3D3D3D',
-    width: 1
   },
 
   starAndForkContainer: {

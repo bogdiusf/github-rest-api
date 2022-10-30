@@ -39,7 +39,7 @@ const ProfileCard = () => {
   const classes = useStyles()
 
   return (
-    <motion.header className={classes.header}>
+    <header className={classes.header}>
       <div className={classes.headerLeftCol}>
         <motion.div
           animate={{ scale: [1.2, 0.9, 1.2] }}
@@ -148,7 +148,7 @@ const ProfileCard = () => {
           )}
         </div>
       </div>
-    </motion.header>
+    </header>
   )
 }
 

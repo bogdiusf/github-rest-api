@@ -7,7 +7,7 @@ export const ButtonsStyles = {
   button: {
     cursor: 'pointer',
     textAlign: 'center',
-    minWidth: '15%',
+    width: '15%',
     height: 50,
     marginBottom: 5,
     borderRadius: 2

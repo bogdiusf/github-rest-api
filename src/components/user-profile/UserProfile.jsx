@@ -15,7 +15,12 @@ const useStyles = createUseStyles({
     flexDirection: 'column',
     gap: 20,
     padding: [20, 0, 40, 0],
-    margin: [0, 20]
+    margin: [0, 20],
+    maxWidth: 785,
+
+    '@media screen and (max-width: 768px)': {
+      width: '95vw'
+    }
   }
 })
 

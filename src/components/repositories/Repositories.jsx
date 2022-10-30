@@ -49,38 +49,45 @@ const Repositories = () => {
 
   return (
     <>
-      <h2 className={classes.headerTitle}>
-        {repos.length
-          ? 'Repositories'
-          : "Dude hates to code in his spare time. Don't even think about it. NEXT!" +
-            `👊`}
-      </h2>
-      {isLoading ? (
-        <FadeTransition>
-          <Loader />
-        </FadeTransition>
-      ) : (
-        repos.length > 0 && (
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1, transition: { duration: 1 } }}
-            exit={{ scale: 0, opacity: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <motion.main className={classes.repoContainer}>
-              {repos?.map((item, index) => (
-                <Repository key={index} item={item} index={index} />
-              ))}
-            </motion.main>
+      <AnimatePresence mode="popLayout">
+        <h2 className={classes.headerTitle}>
+          {repos.length
+            ? 'Repositories'
+            : "Dude hates to code in his spare time. Don't even think about it. NEXT!" +
+              `👊`}
+        </h2>
+        {isLoading ? (
+          <motion.div key="loader">
+            <FadeTransition>
+              <Loader />
+            </FadeTransition>
           </motion.div>
-        )
-      )}
-      <SurfingButtons
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-        nrOfPages={nrOfPages}
-        setIsLoading={setIsLoading}
-      />
+        ) : (
+          repos.length > 0 && (
+            <motion.div
+              key="child"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1, transition: { duration: 1 } }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <motion.main className={classes.repoContainer}>
+                {repos?.map((item, index) => (
+                  <Repository key={index} item={item} index={index} />
+                ))}
+              </motion.main>
+            </motion.div>
+          )
+        )}
+        <motion.div key="buttons" layout transition={{ duration: 1 }}>
+          <SurfingButtons
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            nrOfPages={nrOfPages}
+            setIsLoading={setIsLoading}
+          />
+        </motion.div>
+      </AnimatePresence>
     </>
   )
 }

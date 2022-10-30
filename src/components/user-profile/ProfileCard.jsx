@@ -114,7 +114,7 @@ const ProfileCard = () => {
               onClick={() => window.open(blogUrl, '_blank')}
               className={classes.blogUrl}
             >
-              <div>{blogUrl}</div>
+              {blogUrl}
               <HiOutlineLink />
             </motion.div>
           )}

@@ -61,6 +61,7 @@ export const ProfileCardStyles = {
     padding: [20, 0],
     '& div': {
       display: 'inherit',
+      width: 'fit-content',
       alignItems: 'center',
       fontSize: 16,
       gap: 5
@@ -68,10 +69,13 @@ export const ProfileCardStyles = {
     '& div span:first-child': {
       fontWeight: 600
     },
-
-    '@media screen and (max-width: 820px)': {
+    '@media screen and (max-width: 489px)': {
       flexDirection: 'column',
       gap: 0
+    },
+    '@media screen and (min-width: 490px) and (max-width: 768px)': {
+      flexDirection: 'row',
+      gap: 40
     }
   },
 
@@ -79,34 +83,22 @@ export const ProfileCardStyles = {
     fontSize: 16,
     '& div': {
       display: 'flex',
+      flexWrap: 'wrap',
+      width: 'fit-content',
       alignItems: 'center',
       gap: 5,
       lineHeight: 1.5
-    },
-    '@media screen and (min-width: 769px)': {
-      '& div': {
-        width: 'fit-content'
-      }
     }
   },
   userName: {
     fontWeight: 600
   },
   blogUrl: {
-    '&>div': {
-      display: 'inline-block',
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis'
-    },
+    display: 'inline-block !important',
+    wordBreak: 'break-all',
     '& svg': {
       fontSize: 'x-large',
       height: 16
-    },
-    '@media screen and (min-width: 768px) and (max-width: 820px)': {
-      '& div': {
-        width: '50%'
-      }
     }
   }
 }

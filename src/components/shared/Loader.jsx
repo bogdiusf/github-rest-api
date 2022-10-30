@@ -15,7 +15,7 @@ const useStyles = createUseStyles({
     alignItems: 'center',
 
     '@media screen and (max-width:768px)': {
-      height: location === 'fromHome' ? '90vh' : 210
+      height: location === 'fromHome' ? '90vh' : 540
     }
   })
 })

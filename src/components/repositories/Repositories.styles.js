@@ -14,7 +14,10 @@ export const RepositoryStyles = {
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
-    height: 'auto'
+    height: 420,
+    '@media screen and (max-width: 768px)': {
+      height: 540
+    }
   },
 
   repo: {

@@ -49,14 +49,7 @@ const SurfingButtons = ({
     setSelectedPage(parseInt(searchParams.get('page')))
   }, [searchParams])
 
-  return (
-    <motion.div
-      animate={{ transition: { delay: 0.5 } }}
-      className={classes.buttonsContainer}
-    >
-      {surfingButtons}
-    </motion.div>
-  )
+  return <div className={classes.buttonsContainer}>{surfingButtons}</div>
 }
 
 export default SurfingButtons

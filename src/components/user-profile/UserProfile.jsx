@@ -26,6 +26,8 @@ const UserProfile = () => {
     setTimeout(() => {
       setIsLoading(false)
     }, 2000)
+
+    window.scrollTo({ top: 0 })
   }, [])
 
   const classes = useStyles()

@@ -5,7 +5,7 @@ export const ProfileCardStyles = {
     border: [1, 'solid', '#3D3D3D'],
     borderRadius: 5,
     padding: [20, 35],
-    gap: 45,
+    gap: 20,
 
     '@media screen and (max-width: 768px)': {
       flexDirection: 'column',
@@ -15,7 +15,6 @@ export const ProfileCardStyles = {
 
   headerLeftCol: {
     display: 'flex',
-    gap: 30,
     margin: ['auto', 0]
   },
 

@@ -54,7 +54,7 @@ const ProfileCard = () => {
         <motion.img
           whileHover={
             userData && {
-              scale: 1.3,
+              scale: 1.1,
               borderRadius: '5px',
               transition: { type: 'spring' }
             }

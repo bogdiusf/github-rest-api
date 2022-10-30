@@ -22,26 +22,40 @@ export const HomeStyles = {
 
   main: {
     display: 'flex',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+
+    '@media screen and (min-width: 450px)': {
+      flexDirection: 'row'
+    }
   },
 
   input: {
-    backgroundColor: 'white',
-    color: '#242424',
+    backgroundColor: '#3D3D3D',
+    color: '#FFFFFF',
+    border: [0.5, 'solid', '#FFFFFF'],
     padding: [10, 20],
-    marginRight: 10,
     borderRadius: 2,
     width: 300,
     height: 30,
     fontWeight: 500
   },
   button: {
-    padding: [15, 20],
+    height: '100%',
+    width: 50,
+    height: 50,
     border: 'none',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#3D3D3D',
+    border: [0.5, 'solid', '#FFFFFF'],
     borderRadius: 2,
     display: 'flex',
     alignItems: 'center',
-    gap: 10
+    justifyContent: 'center',
+    gap: 10,
+    '@media screen and (max-width: 450px)': {
+      width: 100
+    }
   }
 }

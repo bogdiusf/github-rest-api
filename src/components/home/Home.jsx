@@ -26,18 +26,18 @@ function Home() {
 
   return (
     <FadeTransition className={classes.homeContainer}>
-      <header key="1" className={classes.header}>
-        <h1>Not enough info about your future employee?</h1>
-        <h2>Grab his spare time projects now!</h2>
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity }}
-        >
-          <ImGithub />
-        </motion.div>
-      </header>
       <AnimatePresence mode="popLayout">
-        <main key="2" className={classes.main}>
+        <motion.header layout key="header" className={classes.header}>
+          <div>Not enough info about your future employee?</div>
+          <div>Grab his spare time projects now!</div>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 10, repeat: Infinity }}
+          >
+            <ImGithub />
+          </motion.div>
+        </motion.header>
+        <motion.main key="main" className={classes.main}>
           <motion.input
             layout
             key="input"
@@ -56,10 +56,10 @@ function Home() {
               whileHover={{ scale: 1.2, cursor: 'pointer' }}
               onClick={handleSubmit}
             >
-              <AiOutlineArrowRight fill="#242424" />
+              <AiOutlineArrowRight fill="#FFFFFF" />
             </motion.button>
           )}
-        </main>
+        </motion.main>
       </AnimatePresence>
     </FadeTransition>
   )

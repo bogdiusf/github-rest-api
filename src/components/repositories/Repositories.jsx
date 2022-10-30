@@ -50,7 +50,7 @@ const Repositories = () => {
   return (
     <>
       <AnimatePresence mode="popLayout">
-        <h2 className={classes.header}>
+        <h2 className={classes.headerTitle}>
           {repos.length
             ? 'Repositories'
             : "Dude hates to code in his spare time. Don't even think about it. NEXT!" +

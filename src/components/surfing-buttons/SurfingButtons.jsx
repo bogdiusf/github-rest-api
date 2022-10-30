@@ -25,8 +25,6 @@ const SurfingButtons = ({
     } else {
       setIsLoading(true)
       setSearchParams({ page: pageNr })
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-
       setTimeout(() => {
         setIsLoading(false)
       }, 1500)

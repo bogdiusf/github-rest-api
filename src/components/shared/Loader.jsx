@@ -7,13 +7,16 @@ import { motion } from 'framer-motion'
 
 const useStyles = createUseStyles({
   loadingContainer: ({ location }) => ({
-    maxWidth: 'auto',
-    minWidth: 800,
+    width: 'auto',
     height: location === 'fromHome' ? '90vh' : 420,
     display: 'flex',
     gap: 5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+
+    '@media screen and (max-width:768px)': {
+      height: location === 'fromHome' ? '90vh' : 210
+    }
   })
 })
 

@@ -97,7 +97,9 @@ const ProfileCard = () => {
           </motion.div>
         </div>
         <div className={classes.personalInfo}>
-          {userData.name && <div>{userData.name}</div>}
+          {userData.name && (
+            <div className={classes.userName}>{userData.name}</div>
+          )}
           {userData.email && (
             <motion.div whileHover={{ cursor: 'pointer', scale: 1.1 }}>
               <a href={'mailto:' + userData.email} target="_blank">
@@ -110,8 +112,9 @@ const ProfileCard = () => {
             <motion.div
               whileHover={{ cursor: 'pointer', scale: 1.1 }}
               onClick={() => window.open(blogUrl, '_blank')}
+              className={classes.blogUrl}
             >
-              {blogUrl.length > 40 ? blogUrl.slice(0, 40) + '...' : blogUrl}
+              <div>{blogUrl}</div>
               <HiOutlineLink />
             </motion.div>
           )}

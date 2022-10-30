@@ -5,7 +5,7 @@ const commonDisplayStyles = {
 }
 
 export const RepositoryStyles = {
-  header: {
+  headerTitle: {
     padding: 0,
     margin: [20, 0, 0, 0]
   },
@@ -25,7 +25,11 @@ export const RepositoryStyles = {
     backgroundColor: '',
     padding: 25,
     borderRadius: 2,
-    border: [1, 'solid', '#3D3D3D']
+    border: [1, 'solid', '#3D3D3D'],
+
+    '@media screen and (max-width: 768px)': {
+      height: 100
+    }
   },
 
   separator: {

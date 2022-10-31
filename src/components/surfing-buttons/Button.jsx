@@ -4,9 +4,10 @@ import React from 'react'
 // Style related components / libraries
 import { motion } from 'framer-motion'
 
-const Button = ({ i, selectedPage, handlePages, classes }) => {
+const Button = ({ i, selectedPage, handlePages, classes, buttonRef }) => {
   return (
     <motion.button
+      ref={buttonRef}
       initial={{ opacity: 0 }}
       animate={{
         backgroundColor: i + 1 === selectedPage ? '#3D3D3D' : '#242424',

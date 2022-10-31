@@ -38,6 +38,10 @@ const ProfileCard = () => {
 
   const classes = useStyles()
 
+  const socialMediaNumberFormatter = Intl.NumberFormat('en', {
+    notation: 'compact'
+  })
+
   return (
     <header className={classes.header}>
       <div className={classes.headerLeftCol}>
@@ -74,7 +78,9 @@ const ProfileCard = () => {
               window.open(`${userData.html_url}?tab=repositories`, '_blank')
             }
           >
-            <span>{userData.public_repos}</span>
+            <span>
+              {socialMediaNumberFormatter.format(userData.public_repos)}
+            </span>
             <span> repositories</span>
           </motion.div>
           <motion.div
@@ -83,7 +89,7 @@ const ProfileCard = () => {
               window.open(`${userData.html_url}?tab=followers`, '_blank')
             }
           >
-            <span>{userData.followers}</span>
+            <span>{socialMediaNumberFormatter.format(userData.followers)}</span>
             <span> followers</span>
           </motion.div>
           <motion.div
@@ -92,7 +98,7 @@ const ProfileCard = () => {
               window.open(`${userData.html_url}?tab=following`, '_blank')
             }
           >
-            <span>{userData.following}</span>
+            <span>{socialMediaNumberFormatter.format(userData.following)}</span>
             <span> following</span>
           </motion.div>
         </div>

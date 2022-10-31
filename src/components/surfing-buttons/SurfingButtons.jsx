@@ -4,7 +4,6 @@ import { createUseStyles } from 'react-jss'
 
 // Style related components / libraries
 import { ButtonsStyles } from './Buttons.styles'
-import { motion } from 'framer-motion'
 
 // Others
 import Button from './Button'
@@ -40,7 +39,7 @@ const SurfingButtons = ({
         key={i}
         i={i}
         selectedPage={selectedPage}
-        handlePages={handlePages}
+        handlePages={() => handlePages(i + 1)}
         classes={classes}
       />
     )

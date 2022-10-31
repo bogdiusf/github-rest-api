@@ -56,7 +56,7 @@ export const ProfileCardStyles = {
 
   statisticsHeader: {
     display: 'flex',
-    gap: 40,
+    gap: 20,
     padding: [20, 0],
     '& div': {
       display: 'inherit',

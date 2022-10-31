@@ -10,6 +10,7 @@ import Home from '../components/home/Home'
 import UserProfile from '../components/user-profile/UserProfile'
 import UserNotFound from '../components/user-not-found/UserNotFound'
 import NotFound from '../components/404/NotFound'
+import Footer from '../components/footer/Footer'
 
 const AppRoutes = () => {
   const location = useLocation()
@@ -27,6 +28,7 @@ const AppRoutes = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </AnimatePresence>
   )
 }

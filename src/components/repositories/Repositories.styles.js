@@ -6,8 +6,19 @@ const commonDisplayStyles = {
 
 export const RepositoryStyles = {
   headerTitle: {
+    display: 'flex',
     padding: 0,
-    margin: [20, 0, 0, 0]
+    margin: [20, 0, 0, 0],
+    '& img': {
+      margin: [0, 'auto']
+    },
+    '& div': {
+      display: 'flex',
+      alignItems: 'center',
+      gap: 10,
+      fontSize: 24,
+      fontWeight: 600
+    }
   },
 
   repoContainer: {

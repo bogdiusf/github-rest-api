@@ -17,11 +17,21 @@ const SurfingButtons = ({
   setIsLoading
 }) => {
   const [selectedPage, setSelectedPage] = useState()
+  const [startingPage, setStartingPage] = useState(0)
+  const [endPage, setEndPage] = useState(12)
 
   const handlePages = (pageNr) => {
     if (selectedPage === pageNr) {
       return
     } else {
+      if (endPage === pageNr) {
+        setStartingPage((prev) => prev + 1)
+        setEndPage((prev) => prev + 1)
+      }
+      if (startingPage + 1 === pageNr && pageNr > 1) {
+        setStartingPage((prev) => prev - 1)
+        setEndPage((prev) => prev - 1)
+      }
       setIsLoading(true)
       setSearchParams({ page: pageNr })
       setTimeout(() => {
@@ -48,7 +58,11 @@ const SurfingButtons = ({
     setSelectedPage(parseInt(searchParams.get('page')))
   }, [searchParams])
 
-  return <div className={classes.buttonsContainer}>{surfingButtons}</div>
+  return (
+    <div className={classes.buttonsContainer}>
+      {surfingButtons.slice(startingPage, endPage)}
+    </div>
+  )
 }
 
 export default SurfingButtons

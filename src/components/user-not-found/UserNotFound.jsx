@@ -1,38 +1,17 @@
+// React libraries
 import React, { useEffect, useState } from 'react'
 import { createUseStyles } from 'react-jss'
 
+// Style related components / libraries
 import { BiUserX } from 'react-icons/bi'
 import { AiFillGithub } from 'react-icons/ai'
+import { UserNotFoundStyles } from './UserNotFound.styles'
 
+// Others
 import FadeTransition from '../shared/FadeTransition'
 import Loader from '../shared/Loader'
 
-const useStyles = createUseStyles({
-  userNotFound: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: ['auto', 0],
-
-    '& svg': {
-      fontSize: 100
-    }
-  },
-  message: {
-    fontSize: 20,
-    fontWeight: 500,
-    minWidth: 350,
-    width: '50vh',
-    lineHeight: 2,
-
-    '& svg': {
-      fontSize: 36,
-      margin: [0, 5]
-    }
-  }
-})
+const useStyles = createUseStyles(UserNotFoundStyles)
 
 const UserNotFound = () => {
   const [isLoading, setIsLoading] = useState(false)

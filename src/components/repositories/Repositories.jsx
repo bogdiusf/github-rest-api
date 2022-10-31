@@ -7,6 +7,8 @@ import { useSearchParams } from 'react-router-dom'
 // Style related components / libraries
 import { AnimatePresence, motion } from 'framer-motion'
 import { RepositoryStyles } from './Repositories.styles'
+import noResults from '../../assets/no-results.png'
+import repository from '../../assets/folder.png'
 
 // Others
 import FadeTransition from '../shared/FadeTransition'
@@ -50,12 +52,16 @@ const Repositories = () => {
   return (
     <>
       <AnimatePresence mode="popLayout">
-        <h2 className={classes.headerTitle}>
-          {repos.length
-            ? 'Repositories'
-            : "Dude hates to code in his spare time. Don't even think about it. NEXT!" +
-              `👊`}
-        </h2>
+        <div className={classes.headerTitle}>
+          {!repos.length ? (
+            <img src={noResults} height="200" width="200" />
+          ) : (
+            <div>
+              <span>Repositories</span>
+              <img src={repository} height="25" width="25" />
+            </div>
+          )}
+        </div>
         {isLoading ? (
           <motion.div key="loader">
             <FadeTransition>

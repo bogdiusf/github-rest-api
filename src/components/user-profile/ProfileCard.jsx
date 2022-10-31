@@ -46,9 +46,7 @@ const ProfileCard = () => {
     <header className={classes.header}>
       <div className={classes.headerLeftCol}>
         <motion.div
-          animate={{ scale: [1.2, 0.9, 1.2] }}
-          whileHover={{ cursor: 'pointer' }}
-          transition={{ repeat: Infinity, duration: 3 }}
+          whileHover={{ cursor: 'pointer', scale: 1.2 }}
           title="Home"
           onClick={() => navigate('/')}
           className={classes.homeBtn}

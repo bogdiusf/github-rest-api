@@ -2,34 +2,19 @@ export const HomeStyles = {
   homeContainer: {
     height: '90vh',
     display: 'flex',
+    width: '100vw',
     flexDirection: 'column',
     justifyContent: 'center'
   },
 
-  header: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 50,
-    '& h1': {
-      padding: 0
-    },
-    '& svg': {
-      fontSize: 140
-    }
-  },
-
   main: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
-
-    '@media screen and (min-width: 450px)': {
-      flexDirection: 'row'
-    }
+    width: 350,
+    margin: [0, 'auto']
   },
 
   input: {
@@ -38,8 +23,8 @@ export const HomeStyles = {
     border: [0.5, 'solid', '#FFFFFF'],
     padding: [10, 20],
     borderRadius: 2,
-    width: 300,
     height: 30,
+    minWidth: 250,
     fontWeight: 500
   },
   button: {

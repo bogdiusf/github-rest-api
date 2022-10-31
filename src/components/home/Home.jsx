@@ -5,9 +5,10 @@ import { createUseStyles } from 'react-jss'
 
 // Style related components / libraries
 import { motion, AnimatePresence } from 'framer-motion'
-import { ImGithub } from 'react-icons/im'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { HomeStyles } from './Home.styles'
+import amdarisLogo from '../../assets/amdaris-logo.svg'
+import githubLogo from '/icons8-github-200.svg'
 
 // Others
 import FadeTransition from '../shared/FadeTransition'
@@ -27,16 +28,22 @@ function Home() {
   return (
     <FadeTransition className={classes.homeContainer}>
       <AnimatePresence mode="popLayout">
-        <motion.header layout key="header" className={classes.header}>
-          <div>Not enough info about your future employee?</div>
-          <div>Grab his spare time projects now!</div>
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 10, repeat: Infinity }}
-          >
-            <ImGithub />
-          </motion.div>
-        </motion.header>
+        <motion.div
+          layout
+          key="amdaris-svg"
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
+          <img src={amdarisLogo} height="150" width="300" />
+        </motion.div>
+        <motion.img
+          layout
+          src={githubLogo}
+          width="150"
+          height="150"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 10, repeat: Infinity }}
+          style={{ margin: '0 auto', marginBottom: 50 }}
+        />
         <motion.main key="main" className={classes.main}>
           <motion.input
             layout

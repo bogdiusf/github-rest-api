@@ -28,7 +28,7 @@ const AppRoutes = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </AnimatePresence>
   )
 }

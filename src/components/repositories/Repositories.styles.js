@@ -8,27 +8,32 @@ export const RepositoryStyles = {
   headerTitle: {
     display: 'flex',
     padding: 0,
-    margin: [20, 0, 0, 0],
+    marginTop: 20
+  },
+
+  imageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
     '& img': {
       margin: [0, 'auto']
-    },
-    '& div': {
-      display: 'flex',
-      alignItems: 'center',
-      gap: 10,
-      fontSize: 24,
-      fontWeight: 600
     }
+  },
+
+  titleContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    fontSize: 24,
+    fontWeight: 600
   },
 
   repoContainer: {
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
-    minHeight: 420,
-    '@media screen and (max-width: 768px)': {
-      minHeight: 540
-    }
+    minHeight: 420
   },
 
   repo: {
@@ -44,13 +49,9 @@ export const RepositoryStyles = {
     '&>div:first-child': {
       width: '80%',
       display: '-webkit-box',
-      '-webkit-line-clamp': 2,
+      '-webkit-line-clamp': 1,
       '-webkit-box-orient': 'vertical',
       overflow: 'hidden'
-    },
-
-    '@media screen and (max-width: 768px)': {
-      height: 100
     }
   },
 

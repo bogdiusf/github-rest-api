@@ -12,11 +12,7 @@ const useStyles = createUseStyles({
     display: 'flex',
     gap: 5,
     justifyContent: 'center',
-    alignItems: 'center',
-
-    '@media screen and (max-width:768px)': {
-      height: location === 'fromHome' ? '100vh' : 540
-    }
+    alignItems: 'center'
   })
 })
 

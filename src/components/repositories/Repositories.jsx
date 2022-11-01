@@ -54,9 +54,11 @@ const Repositories = () => {
       <AnimatePresence mode="popLayout">
         <div className={classes.headerTitle}>
           {!repos.length ? (
-            <img src={noResults} height="200" width="200" />
+            <div className={classes.imageContainer}>
+              <img src={noResults} height="200" width="200" />
+            </div>
           ) : (
-            <div>
+            <div className={classes.titleContainer}>
               <span>Repositories</span>
               <img src={repository} height="25" width="25" />
             </div>

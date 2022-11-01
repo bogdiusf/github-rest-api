@@ -7,12 +7,18 @@ const Footer = () => {
     <AnimatePresence>
       <motion.div
         style={{
-          height: 150,
+          height: 250,
           backgroundColor: '#3D3D3D',
           display: 'flex',
+          marginTop: 200,
           justifyContent: 'center',
           alignItems: 'center',
-          width: '100vw'
+          width: '100vw',
+          // position: 'absolute',
+          bottom: 0,
+          '@media screen and (maxWidth: 768px)': {
+            marginTop: 0
+          }
         }}
         layout
       >

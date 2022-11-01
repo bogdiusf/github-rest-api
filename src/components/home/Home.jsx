@@ -27,24 +27,22 @@ function Home() {
 
   return (
     <FadeTransition className={classes.homeContainer}>
-      <AnimatePresence mode="popLayout">
-        <motion.div
-          layout
-          key="amdaris-svg"
-          style={{ display: 'flex', justifyContent: 'center' }}
-        >
-          <img src={amdarisLogo} height="150" width="300" />
-        </motion.div>
-        <motion.img
-          layout
-          src={githubLogo}
-          width="150"
-          height="150"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity }}
-          style={{ margin: '0 auto', marginBottom: 50 }}
-        />
-        <motion.main key="main" className={classes.main}>
+      <motion.div
+        key="amdaris-svg"
+        style={{ display: 'flex', justifyContent: 'center' }}
+      >
+        <img src={amdarisLogo} height="150" width="300" />
+      </motion.div>
+      <motion.img
+        src={githubLogo}
+        width="150"
+        height="150"
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{ duration: 5, repeat: Infinity, repeatType: 'reverse' }}
+        style={{ margin: '0 auto', marginBottom: 30 }}
+      />
+      <motion.main key="main" className={classes.main}>
+        <AnimatePresence mode="popLayout">
           <motion.input
             layout
             key="input"
@@ -56,9 +54,11 @@ function Home() {
           />
           {inputUsername && (
             <motion.button
+              layout
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
               className={classes.button}
               whileHover={{ scale: 1.2, cursor: 'pointer' }}
               onClick={handleSubmit}
@@ -66,8 +66,8 @@ function Home() {
               <AiOutlineArrowRight fill="#FFFFFF" />
             </motion.button>
           )}
-        </motion.main>
-      </AnimatePresence>
+        </AnimatePresence>
+      </motion.main>
     </FadeTransition>
   )
 }

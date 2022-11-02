@@ -4,9 +4,11 @@ import { createUseStyles } from 'react-jss'
 
 // Style related components / libraries
 import { ButtonsStyles } from './Buttons.styles'
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai'
 
 // Others
 import Button from './Button'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const useStyles = createUseStyles(ButtonsStyles)
 
@@ -50,7 +52,7 @@ const SurfingButtons = ({
     }
   }
 
-  const classes = useStyles()
+  const classes = useStyles({})
 
   const surfingButtons = []
   for (let i = 0; i < nrOfPages; i++)
@@ -60,8 +62,9 @@ const SurfingButtons = ({
         index={i + 1}
         selectedPage={selectedPage}
         handlePages={handlePages}
-        classes={classes}
-      />
+      >
+        {i + 1}
+      </Button>
     )
 
   useEffect(() => {
@@ -77,25 +80,31 @@ const SurfingButtons = ({
   }, [])
 
   return (
-    <div className={classes.buttonsContainer}>
-      {endPage - 3 > 1 && (
-        <Button
-          index={'Back'}
-          selectedPage={selectedPage}
-          handlePages={handlePages}
-          classes={classes}
-        />
-      )}
-      {surfingButtons.slice(endPage - 4, endPage)}
-      {selectedPage !== nrOfPages && nrOfPages >= 4 && (
-        <Button
-          index={'Next'}
-          selectedPage={selectedPage}
-          handlePages={handlePages}
-          classes={classes}
-        />
-      )}
-    </div>
+    <AnimatePresence>
+      <motion.div className={classes.buttonsContainer}>
+        {endPage - 3 > 1 && (
+          <Button
+            index={'Back'}
+            selectedPage={selectedPage}
+            handlePages={handlePages}
+            classes={classes}
+          >
+            {<AiOutlineArrowLeft />}
+          </Button>
+        )}
+        {surfingButtons.slice(endPage - 4, endPage)}
+        {selectedPage !== nrOfPages && nrOfPages > 4 && (
+          <Button
+            index={'Next'}
+            selectedPage={selectedPage}
+            handlePages={handlePages}
+            classes={classes}
+          >
+            <AiOutlineArrowRight />
+          </Button>
+        )}
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

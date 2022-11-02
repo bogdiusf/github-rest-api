@@ -4,12 +4,15 @@ export const ButtonsStyles = {
     justifyContent: 'space-evenly',
     flexWrap: 'wrap'
   },
-  button: {
-    cursor: 'pointer',
+  button: ({ index }) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     textAlign: 'center',
-    width: '15%',
+    cursor: 'pointer',
+    width: isNaN(index) ? '10%' : '15%',
     height: 50,
     marginBottom: 5,
     borderRadius: 2
-  }
+  })
 }

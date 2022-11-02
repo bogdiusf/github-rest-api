@@ -1,12 +1,5 @@
 :root {
   /* color variables */
-  --white: #ffffff;
-  --dark-grey: #242424;
-  --light-grey: #3d3d3d;
-  --star-yellow: #ffff00;
-  --forrest-green: #34c759;
-
-  background-color: var(--dark-grey);
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -18,6 +11,30 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   letter-spacing: 2px;
+}
+
+/* body[data-theme='light'] {
+  --white: #ffffff;
+  --dark-grey: #242424;
+  --light-grey: #3d3d3d;
+  --star-yellow: #ffff00;
+  --forrest-green: #34c759;
+  --input-border: var(--dark-grey);
+  --input-background: var(--white);
+  --input-color: var(--dark-grey);
+  background-color: var(--white);
+} */
+
+body[data-theme='dark'] {
+  --white: #ffffff;
+  --dark-grey: #242424;
+  --light-grey: #3d3d3d;
+  --star-yellow: #ffff00;
+  --forrest-green: #34c759;
+  --input-border: var(--white);
+  --input-background: var(--light-grey);
+  --input-color: var(--white);
+  background-color: var(--dark-grey);
 }
 
 *,

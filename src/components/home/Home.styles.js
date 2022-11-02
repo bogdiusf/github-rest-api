@@ -18,9 +18,9 @@ export const HomeStyles = {
   },
 
   input: {
-    backgroundColor: 'var(--light-grey)',
-    color: 'var(--white)',
-    border: [0.5, 'solid', 'var(--white)'],
+    backgroundColor: 'var(--input-background)',
+    color: 'var(--input-color)',
+    border: [0.5, 'solid', 'var(--input-border)'],
     padding: [10, 20],
     borderRadius: 2,
     height: 30,

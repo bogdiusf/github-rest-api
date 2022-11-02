@@ -29,7 +29,7 @@ const Button = ({
       transition={{ duration: 0.5 }}
       onClick={() => {
         if (index === 'Back' || index === 'Next') {
-          handleBackAndForth(index.toUpperCase())
+          handleBackAndForth()
         } else {
           handlePages(index)
         }

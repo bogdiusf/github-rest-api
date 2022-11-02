@@ -19,6 +19,7 @@ const SurfingButtons = ({
   const [selectedPage, setSelectedPage] = useState()
   const [startingPage, setStartingPage] = useState(0)
   const [endPage, setEndPage] = useState(4)
+  const urlPageNr = parseInt(searchParams.get('page'))
 
   const handlePages = (pageNr) => {
     if (selectedPage === pageNr) {
@@ -32,31 +33,31 @@ const SurfingButtons = ({
     }
   }
 
-  const handleBackAndForth = (actionType) => {
-    switch (actionType) {
-      case 'BACK': {
-        if (selectedPage === 1) {
-          return
-        } else {
-          console.log(selectedPage)
-          setSearchParams({ page: selectedPage - 1 })
-        }
-      }
-      case 'NEXT': {
-        if (selectedPage < nrOfPages) {
-          setIsLoading(true)
-          setTimeout(() => {
-            setIsLoading(false)
-          }, 1500)
-          setSearchParams({ page: selectedPage + 1 })
-          if (endPage === selectedPage) {
-            setStartingPage((prev) => prev + 1)
-            setEndPage((prev) => prev + 1)
-          }
-        } else {
-          return
-        }
-      }
+  const handleBack = () => {
+    if (selectedPage === 1) {
+      return
+    } else {
+      setSearchParams({ page: selectedPage - 1 })
+      setIsLoading(true)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 1500)
+    }
+  }
+
+  const handleNext = () => {
+    if (selectedPage === nrOfPages) {
+      return
+    } else {
+      setSearchParams({ page: selectedPage + 1 })
+      setIsLoading(true)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 1500)
+    }
+    if (endPage === selectedPage) {
+      setStartingPage((prev) => prev + 1)
+      setEndPage((prev) => prev + 1)
     }
   }
 
@@ -75,12 +76,17 @@ const SurfingButtons = ({
     )
 
   useEffect(() => {
-    setSelectedPage(parseInt(searchParams.get('page')))
-  }, [searchParams])
+    setSelectedPage(urlPageNr)
+  }, [urlPageNr])
 
   useEffect(() => {
-    setStartingPage(parseInt(searchParams.get('page')) - 4)
-    setEndPage(parseInt(searchParams.get('page')))
+    if (urlPageNr < 5) {
+      setStartingPage(0)
+      setEndPage(4)
+    } else {
+      setStartingPage(urlPageNr - 4)
+      setEndPage(urlPageNr)
+    }
   }, [])
 
   return (
@@ -88,14 +94,14 @@ const SurfingButtons = ({
       <Button
         index={'Back'}
         selectedPage={selectedPage}
-        handleBackAndForth={handleBackAndForth}
+        handleBackAndForth={handleBack}
         classes={classes}
       />
       {surfingButtons.slice(startingPage, endPage)}
       <Button
         index={'Next'}
         selectedPage={selectedPage}
-        handleBackAndForth={handleBackAndForth}
+        handleBackAndForth={handleNext}
         classes={classes}
       />
     </div>

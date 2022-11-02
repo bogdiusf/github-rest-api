@@ -8,7 +8,7 @@ const Footer = () => {
       <motion.div
         style={{
           height: 250,
-          backgroundColor: '#3D3D3D',
+          backgroundColor: 'var(--light-grey)',
           display: 'flex',
           marginTop: 200,
           justifyContent: 'center',

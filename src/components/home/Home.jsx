@@ -63,7 +63,7 @@ function Home() {
               whileHover={{ scale: 1.2, cursor: 'pointer' }}
               onClick={handleSubmit}
             >
-              <AiOutlineArrowRight fill="#FFFFFF" />
+              <AiOutlineArrowRight fill="var(--white)" />
             </motion.button>
           )}
         </AnimatePresence>

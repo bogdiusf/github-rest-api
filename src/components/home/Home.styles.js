@@ -1,6 +1,6 @@
 export const HomeStyles = {
   homeContainer: {
-    height: '90vh',
+    height: '100vh',
     display: 'flex',
     width: '100vw',
     flexDirection: 'column',
@@ -18,9 +18,9 @@ export const HomeStyles = {
   },
 
   input: {
-    backgroundColor: '#3D3D3D',
-    color: '#FFFFFF',
-    border: [0.5, 'solid', '#FFFFFF'],
+    backgroundColor: 'var(--light-grey)',
+    color: 'var(--white)',
+    border: [0.5, 'solid', 'var(--white)'],
     padding: [10, 20],
     borderRadius: 2,
     height: 30,
@@ -32,8 +32,8 @@ export const HomeStyles = {
     width: 50,
     height: 50,
     border: 'none',
-    backgroundColor: '#3D3D3D',
-    border: [0.5, 'solid', '#FFFFFF'],
+    backgroundColor: 'var(--light-grey)',
+    border: [0.5, 'solid', 'var(--white)'],
     borderRadius: 2,
     display: 'flex',
     alignItems: 'center',

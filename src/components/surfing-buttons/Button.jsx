@@ -10,10 +10,13 @@ const Button = ({ index, selectedPage, handlePages, classes, buttonRef }) => {
       ref={buttonRef}
       initial={{ opacity: 0 }}
       animate={{
-        backgroundColor: index === selectedPage ? '#3D3D3D' : '#242424',
+        backgroundColor:
+          index === selectedPage ? 'var(--light-grey)' : 'var(--dark-grey)',
         scale: index === selectedPage ? 1.05 : 0.8,
         fontWeight: index === selectedPage ? 700 : 400,
-        border: `1px solid ${index === selectedPage ? '#FFFFFF' : '#3d3d3d'}`,
+        border: `1px solid ${
+          index === selectedPage ? 'var(--white)' : 'var(--light-grey)'
+        }`,
         opacity: 1,
         marginLeft: index === selectedPage ? 10 : 0,
         marginRight: index === selectedPage ? 10 : 0

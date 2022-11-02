@@ -44,7 +44,7 @@ export const RepositoryStyles = {
     backgroundColor: '',
     padding: 25,
     borderRadius: 2,
-    border: [1, 'solid', '#3D3D3D'],
+    border: [1, 'solid', 'var(--light-grey)'],
 
     '&>div:first-child': {
       width: '80%',

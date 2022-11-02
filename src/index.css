@@ -1,20 +1,29 @@
 :root {
+  /* color variables */
+  --white: #ffffff;
+  --dark-grey: #242424;
+  --light-grey: #3d3d3d;
+  --star-yellow: #ffff00;
+  --forrest-green: #34c759;
+
+  background-color: var(--dark-grey);
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
-  color: rgb(255, 255, 255);
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  height: 100%;
   letter-spacing: 2px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -36,14 +45,8 @@ h1 {
   margin-bottom: 10px;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 @media (prefers-reduced-motion) {
-  .hidden {
+  body {
     transition: none;
   }
 }

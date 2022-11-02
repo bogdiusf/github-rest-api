@@ -24,7 +24,7 @@ const Repository = ({ item, index }) => {
         whileHover={{
           scale: 1.1,
           cursor: 'pointer',
-          backgroundColor: '#3d3d3d'
+          backgroundColor: 'var(--light-grey)'
         }}
         onClick={(e) => window.open(item.clone_url, '_blank')}
       >
@@ -32,11 +32,11 @@ const Repository = ({ item, index }) => {
         <div className={classes.starAndForkContainer}>
           <div className={classes.center}>
             <span>{item.stargazers_count}</span>
-            <AiFillStar fill="#ffff00" />
+            <AiFillStar fill="var(--star-yellow)" />
           </div>
           <div className={classes.center}>
             <span>{item.forks_count}</span>
-            <GoRepoForked fill="#34c759" />
+            <GoRepoForked fill="var(--forrest-green)" />
           </div>
         </div>
       </motion.div>

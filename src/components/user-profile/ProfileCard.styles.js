@@ -2,7 +2,7 @@ export const ProfileCardStyles = {
   header: {
     height: 'auto',
     display: 'flex',
-    border: [1, 'solid', '#3D3D3D'],
+    border: [1, 'solid', 'var(--light-grey)'],
     borderRadius: 5,
     padding: [20, 35],
     gap: 20,
@@ -34,7 +34,7 @@ export const ProfileCardStyles = {
 
   avatar: {
     borderRadius: '50%',
-    border: '1px solid #FFFFFF',
+    border: '1px solid var(--white)',
     width: 200,
     height: 200,
     marginLeft: 20,

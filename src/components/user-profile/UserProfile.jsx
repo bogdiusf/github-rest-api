@@ -17,6 +17,7 @@ const useStyles = createUseStyles({
     padding: [30, 0, 100],
     margin: [0, 'auto'],
     maxWidth: 750,
+    color: 'var(--white)',
 
     '@media screen and (max-width: 768px)': {
       width: '95vw'

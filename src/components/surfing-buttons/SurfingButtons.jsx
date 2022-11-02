@@ -16,48 +16,37 @@ const SurfingButtons = ({
   nrOfPages,
   setIsLoading
 }) => {
-  const [selectedPage, setSelectedPage] = useState()
-  const [startingPage, setStartingPage] = useState(0)
-  const [endPage, setEndPage] = useState(4)
+  const [selectedPage, setSelectedPage] = useState(
+    parseInt(searchParams.get('page'))
+  )
+  const [endPage, setEndPage] = useState(1)
   const urlPageNr = parseInt(searchParams.get('page'))
 
-  const handlePages = (pageNr) => {
-    if (selectedPage === pageNr) {
+  const handlePages = (index) => {
+    if (
+      selectedPage === index ||
+      (selectedPage === 1 && index === 'Back') ||
+      (selectedPage === nrOfPages && index === 'Next')
+    ) {
       return
     } else {
-      setSearchParams({ page: pageNr })
       setIsLoading(true)
       setTimeout(() => {
         setIsLoading(false)
       }, 1500)
-    }
-  }
-
-  const handleBack = () => {
-    if (selectedPage === 1) {
-      return
-    } else {
-      setSearchParams({ page: selectedPage - 1 })
-      setIsLoading(true)
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 1500)
-    }
-  }
-
-  const handleNext = () => {
-    if (selectedPage === nrOfPages) {
-      return
-    } else {
-      setSearchParams({ page: selectedPage + 1 })
-      setIsLoading(true)
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 1500)
-    }
-    if (endPage === selectedPage) {
-      setStartingPage((prev) => prev + 1)
-      setEndPage((prev) => prev + 1)
+      if (index === 'Back') {
+        if (endPage - selectedPage === 3) {
+          setEndPage((prev) => prev - 1)
+        }
+        setSearchParams({ page: selectedPage - 1 })
+      } else if (index === 'Next') {
+        setSearchParams({ page: selectedPage + 1 })
+        if (endPage === selectedPage) {
+          setEndPage((prev) => prev + 1)
+        }
+      } else {
+        setSearchParams({ page: index })
+      }
     }
   }
 
@@ -81,29 +70,31 @@ const SurfingButtons = ({
 
   useEffect(() => {
     if (urlPageNr < 5) {
-      setStartingPage(0)
       setEndPage(4)
     } else {
-      setStartingPage(urlPageNr - 4)
-      setEndPage(urlPageNr)
+      setEndPage(selectedPage)
     }
   }, [])
 
   return (
     <div className={classes.buttonsContainer}>
-      <Button
-        index={'Back'}
-        selectedPage={selectedPage}
-        handleBackAndForth={handleBack}
-        classes={classes}
-      />
-      {surfingButtons.slice(startingPage, endPage)}
-      <Button
-        index={'Next'}
-        selectedPage={selectedPage}
-        handleBackAndForth={handleNext}
-        classes={classes}
-      />
+      {endPage - 3 > 1 && (
+        <Button
+          index={'Back'}
+          selectedPage={selectedPage}
+          handlePages={handlePages}
+          classes={classes}
+        />
+      )}
+      {surfingButtons.slice(endPage - 4, endPage)}
+      {selectedPage !== nrOfPages && nrOfPages >= 4 && (
+        <Button
+          index={'Next'}
+          selectedPage={selectedPage}
+          handlePages={handlePages}
+          classes={classes}
+        />
+      )}
     </div>
   )
 }

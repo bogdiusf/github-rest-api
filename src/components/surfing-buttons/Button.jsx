@@ -4,14 +4,7 @@ import React from 'react'
 // Style related components / libraries
 import { motion } from 'framer-motion'
 
-const Button = ({
-  index,
-  selectedPage,
-  handlePages,
-  classes,
-  buttonRef,
-  handleBackAndForth
-}) => {
+const Button = ({ index, selectedPage, handlePages, classes, buttonRef }) => {
   return (
     <motion.button
       ref={buttonRef}
@@ -28,11 +21,7 @@ const Button = ({
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.5 }}
       onClick={() => {
-        if (index === 'Back' || index === 'Next') {
-          handleBackAndForth()
-        } else {
-          handlePages(index)
-        }
+        handlePages(index)
       }}
       className={classes.button}
     >

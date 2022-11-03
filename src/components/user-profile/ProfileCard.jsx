@@ -33,7 +33,9 @@ const ProfileCard = () => {
   const { fetchUserData } = FetchData()
 
   useEffect(() => {
-    fetchUserData()
+    const abortController = new AbortController()
+    fetchUserData(abortController.signal)
+    return () => abortController.abort()
   }, [])
 
   const classes = useStyles()

@@ -44,7 +44,10 @@ const Repositories = () => {
   }, [])
 
   useEffect(() => {
-    fetchRepoData(currentPage)
+    const abortController = new AbortController()
+    fetchRepoData(currentPage, abortController.signal)
+
+    return () => abortController.abort()
   }, [currentPage])
 
   const classes = useStyles()

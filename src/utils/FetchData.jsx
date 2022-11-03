@@ -10,7 +10,7 @@ const FetchData = () => {
   const navigate = useNavigate()
   const { user } = useParams()
 
-  const fetchRepoData = async (pageNumber = 1) => {
+  const fetchRepoData = async (pageNumber = 1, signal) => {
     try {
       dispatch({ type: 'SET_LOADER', payload: true })
       const repoResponse = await fetch(
@@ -19,11 +19,14 @@ const FetchData = () => {
           headers: {
             Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`
           }
-        }
+        },
+        { signal }
       )
       if (repoResponse.status === 200) {
         const reposData = await repoResponse.json()
-        dispatch({ type: 'SET_REPOS', payload: reposData })
+        if (!signal.aborted) {
+          dispatch({ type: 'SET_REPOS', payload: reposData })
+        }
       } else if (repoResponse.status === 404) {
         navigate(`/user/${user}/user-not-found`)
       }
@@ -33,16 +36,22 @@ const FetchData = () => {
     setTimeout(() => dispatch({ type: 'SET_LOADER', payload: false }), 2000)
   }
 
-  const fetchUserData = async () => {
+  const fetchUserData = async (signal) => {
     try {
-      const userResponse = await fetch(`${BASE_URL}/${user}`, {
-        headers: {
-          Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`
-        }
-      })
+      const userResponse = await fetch(
+        `${BASE_URL}/${user}`,
+        {
+          headers: {
+            Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`
+          }
+        },
+        { signal }
+      )
       if (userResponse.status === 200) {
         const userData = await userResponse.json()
-        dispatch({ type: 'SET_USER_DATA', payload: userData })
+        if (!signal.aborted) {
+          dispatch({ type: 'SET_USER_DATA', payload: userData })
+        }
       } else if (userResponse.status === 404) {
         navigate(`/user/${user}/user-not-found`)
       }

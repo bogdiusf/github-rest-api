@@ -13,18 +13,29 @@ export const HomeStyles = {
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
-    width: 350,
     margin: [0, 'auto']
+  },
+
+  inputWrapper: {
+    position: 'relative'
+  },
+
+  searchIcon: {
+    position: 'absolute',
+    top: 14,
+    left: 15,
+    fontSize: 24,
+    color: '#858585'
   },
 
   input: {
     backgroundColor: 'var(--input-background)',
     color: 'var(--input-color)',
     border: [0.5, 'solid', 'var(--input-border)'],
-    padding: [10, 20],
+    padding: [10, 0, 10, 50],
     borderRadius: 2,
     height: 30,
-    minWidth: 250,
+    width: 200,
     fontWeight: 500
   },
   button: {
@@ -38,9 +49,6 @@ export const HomeStyles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
-    '@media screen and (max-width: 450px)': {
-      width: 100
-    }
+    gap: 10
   }
 }

@@ -5,7 +5,7 @@ import { createUseStyles } from 'react-jss'
 
 // Style related components / libraries
 import { motion, AnimatePresence } from 'framer-motion'
-import { AiOutlineArrowRight } from 'react-icons/ai'
+import { AiOutlineArrowRight, AiOutlineSearch } from 'react-icons/ai'
 import { HomeStyles } from './Home.styles'
 import amdarisLogo from '../../assets/amdaris-logo.svg'
 import githubLogo from '/icons8-github-200.svg'
@@ -43,15 +43,16 @@ function Home() {
       />
       <motion.main key="main" className={classes.main}>
         <AnimatePresence mode="popLayout">
-          <motion.input
-            layout
-            key="input"
-            className={classes.input}
-            placeholder="Enter a username..."
-            value={inputUsername}
-            onChange={(e) => setInputUsername(e.target.value)}
-            onKeyDown={(e) => (e.key === 'Enter' ? handleSubmit() : null)}
-          />
+          <motion.div layout key="input" className={classes.inputWrapper}>
+            <AiOutlineSearch className={classes.searchIcon} />
+            <motion.input
+              className={classes.input}
+              placeholder="Enter a username..."
+              value={inputUsername}
+              onChange={(e) => setInputUsername(e.target.value)}
+              onKeyDown={(e) => (e.key === 'Enter' ? handleSubmit() : null)}
+            />
+          </motion.div>
           {inputUsername && (
             <motion.button
               layout

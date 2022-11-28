@@ -27,12 +27,6 @@ function Home() {
 
   return (
     <FadeTransition className={classes.homeContainer}>
-      <motion.div
-        key="amdaris-svg"
-        style={{ display: 'flex', justifyContent: 'center' }}
-      >
-        <img src={amdarisLogo} height="150" width="300" />
-      </motion.div>
       <motion.img
         src={githubLogo}
         width="150"
